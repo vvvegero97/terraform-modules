@@ -32,7 +32,7 @@ resource "aws_security_group_rule" "docker_swarm" {
   from_port         = 2377
   to_port           = 2377
   protocol          = "tcp"
-  description       = "Docker swarm jon port"
+  description       = "Docker swarm join port"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = module.project_sg.security_group_id
 }
