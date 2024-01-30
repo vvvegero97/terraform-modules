@@ -12,3 +12,13 @@ variable "ecr_policy" {
   description = "JSON-encoded policy for ECR access."
   type        = string
 }
+
+variable "policy_map" {
+  description = "Map variable with policies"
+  type = map(object({
+    name        = string
+    description = string
+    policy      = string
+  }))
+  default = {}
+}

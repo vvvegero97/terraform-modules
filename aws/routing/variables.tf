@@ -8,8 +8,8 @@ variable "domain" {
   type        = string
 }
 
-# Map variable with records
 variable "record_map" {
+  description = "Map variable with records."
   type = map(object({
     name    = string
     type    = string
