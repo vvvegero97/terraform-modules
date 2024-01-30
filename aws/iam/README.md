@@ -30,9 +30,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment | `string` | n/a | yes |
-| <a name="input_ecr_repository_arns"></a> [ecr\_repository\_arns](#input\_ecr\_repository\_arns) | List of ECR repository ARNs to apply the policy to. | `list(string)` | n/a | yes |
-| <a name="input_ecr_user_name"></a> [ecr\_user\_name](#input\_ecr\_user\_name) | User name for ECR access | `string` | n/a | yes |
+| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | n/a | yes |
+| <a name="input_ecr_policy"></a> [ecr\_policy](#input\_ecr\_policy) | JSON-encoded policy for ECR access. | `string` | n/a | yes |
+| <a name="input_ecr_user_name"></a> [ecr\_user\_name](#input\_ecr\_user\_name) | User name for ECR access. | `string` | n/a | yes |
 
 ## Outputs
 
