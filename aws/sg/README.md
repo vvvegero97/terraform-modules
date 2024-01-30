@@ -32,8 +32,9 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | n/a | yes |
+| <a name="input_docker_ip_whitelist"></a> [docker\_ip\_whitelist](#input\_docker\_ip\_whitelist) | List of IP addresses to access Docker Port. | `list(string)` | n/a | yes |
 | <a name="input_ingress_rules"></a> [ingress\_rules](#input\_ingress\_rules) | List of predefined ingress rules. | `list(string)` | <pre>[<br>  "https-443-tcp",<br>  "http-80-tcp",<br>  "ssh-tcp"<br>]</pre> | no |
-| <a name="input_ip_whitelist"></a> [ip\_whitelist](#input\_ip\_whitelist) | List of IP addresses to access Docker Port. | `list(string)` | n/a | yes |
+| <a name="input_swarm_ip_whitelist"></a> [swarm\_ip\_whitelist](#input\_swarm\_ip\_whitelist) | List of IP addresses to join Docker Swarm cluster. | `list(string)` | n/a | yes |
 | <a name="input_type"></a> [type](#input\_type) | Type of the security group | `string` | n/a | yes |
 | <a name="input_vpc_cidr_block"></a> [vpc\_cidr\_block](#input\_vpc\_cidr\_block) | The CIDR block of the VPC | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | AWS VPC ID. | `string` | n/a | yes |

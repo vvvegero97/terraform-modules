@@ -24,7 +24,12 @@ variable "ingress_rules" {
   description = "List of predefined ingress rules."
 }
 
-variable "ip_whitelist" {
+variable "docker_ip_whitelist" {
   type        = list(string)
   description = "List of IP addresses to access Docker Port."
+}
+
+variable "swarm_ip_whitelist" {
+  type        = list(string)
+  description = "List of IP addresses to join Docker Swarm cluster."
 }

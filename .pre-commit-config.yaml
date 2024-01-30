@@ -11,7 +11,7 @@ repos:
           - --hook-config=--add-to-existing-file=true
           - --hook-config=--create-file-if-not-exist=true
       - id: terraform_tfsec # https://github.com/liamg/tfsec
-        files: modules/
+        files: aws/
         args:
           - >
             --args=--exclude-downloaded-modules=true
@@ -38,4 +38,5 @@ repos:
       - id: check-merge-conflict
       - id: end-of-file-fixer
       - id: trailing-whitespace
+      - id: detect-aws-credentials
       - id: detect-private-key

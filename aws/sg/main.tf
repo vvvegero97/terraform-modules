@@ -23,7 +23,7 @@ resource "aws_security_group_rule" "docker_remote" {
   to_port           = 2376
   protocol          = "tcp"
   description       = "Docker port"
-  cidr_blocks       = var.ip_whitelist
+  cidr_blocks       = var.docker_ip_whitelist
   security_group_id = module.project_sg.security_group_id
 }
 
@@ -33,6 +33,6 @@ resource "aws_security_group_rule" "docker_swarm" {
   to_port           = 2377
   protocol          = "tcp"
   description       = "Docker swarm join port"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = var.swarm_ip_whitelist
   security_group_id = module.project_sg.security_group_id
 }
