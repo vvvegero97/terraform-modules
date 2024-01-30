@@ -1,6 +1,7 @@
 # EC2 Instance
 module "ec2_instance" {
-  source = "terraform-aws-modules/ec2-instance/aws"
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "5.6.0"
 
   name                        = "${var.deployment_prefix}-${var.instance_name}"
   ami                         = var.ami

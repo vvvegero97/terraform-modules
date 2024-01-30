@@ -1,12 +1,3 @@
-
-# module "key_pair" {
-#   source = "terraform-aws-modules/key-pair/aws"
-
-#   key_name   = "${var.deployment_prefix}-key"
-#   public_key = var.instance_public_key
-# }
-
-
 resource "tls_private_key" "docker_swarm_ssh_key" {
   algorithm = "RSA"
 }

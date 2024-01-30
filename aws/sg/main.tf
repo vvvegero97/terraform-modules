@@ -1,5 +1,6 @@
 module "project_sg" {
-  source = "terraform-aws-modules/security-group/aws"
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "5.1.0"
 
   name   = "${var.deployment_prefix}-${var.type}-sg"
   vpc_id = var.vpc_id

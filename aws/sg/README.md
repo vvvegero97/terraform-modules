@@ -18,7 +18,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_project_sg"></a> [project\_sg](#module\_project\_sg) | terraform-aws-modules/security-group/aws | n/a |
+| <a name="module_project_sg"></a> [project\_sg](#module\_project\_sg) | terraform-aws-modules/security-group/aws | 5.1.0 |
 
 ## Resources
 
