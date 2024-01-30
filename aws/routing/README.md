@@ -29,7 +29,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | n/a | yes |
+| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_domain"></a> [domain](#input\_domain) | The main Route53 domain. | `string` | n/a | yes |
 | <a name="input_record_map"></a> [record\_map](#input\_record\_map) | Map variable with records. | <pre>map(object({<br>    name    = string<br>    type    = string<br>    ttl     = string<br>    records = list(string)<br>  }))</pre> | `{}` | no |
 

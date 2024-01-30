@@ -1,6 +1,7 @@
 variable "deployment_prefix" {
   description = "Prefix of the deployment"
   type        = string
+  default     = "terraform"
 }
 
 variable "ecr_name" {

@@ -32,7 +32,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_iam_service_linked_role_autoscaling"></a> [aws\_iam\_service\_linked\_role\_autoscaling](#input\_aws\_iam\_service\_linked\_role\_autoscaling) | Controls if AWS IAM Service linked role Autoscaling should be created. | `bool` | `false` | no |
-| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | n/a | yes |
+| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 
 ## Outputs
 

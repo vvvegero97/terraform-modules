@@ -33,7 +33,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_ecr_cache_repository"></a> [create\_ecr\_cache\_repository](#input\_create\_ecr\_cache\_repository) | Determines whether to create cache ECR repository or not | `bool` | `false` | no |
 | <a name="input_create_ecr_repository_policy"></a> [create\_ecr\_repository\_policy](#input\_create\_ecr\_repository\_policy) | Determines whether to create ECR repository policy or not | `bool` | `false` | no |
-| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment | `string` | n/a | yes |
+| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment | `string` | `"terraform"` | no |
 | <a name="input_ecr_name"></a> [ecr\_name](#input\_ecr\_name) | ECR name for service | `string` | n/a | yes |
 | <a name="input_ecr_repository_policy"></a> [ecr\_repository\_policy](#input\_ecr\_repository\_policy) | Elastic Container Registry Repository Policy. | `string` | `""` | no |
 | <a name="input_image_tag_mutability"></a> [image\_tag\_mutability](#input\_image\_tag\_mutability) | The tag mutability setting for the repository. Must be one of: MUTABLE or IMMUTABLE | `string` | `"IMMUTABLE"` | no |

@@ -30,10 +30,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | n/a | yes |
-| <a name="input_ecr_policy"></a> [ecr\_policy](#input\_ecr\_policy) | JSON-encoded policy for ECR access. | `string` | n/a | yes |
-| <a name="input_ecr_user_name"></a> [ecr\_user\_name](#input\_ecr\_user\_name) | User name for ECR access. | `string` | n/a | yes |
+| <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_policy_map"></a> [policy\_map](#input\_policy\_map) | Map variable with policies | <pre>map(object({<br>    name        = string<br>    description = string<br>    policy      = string<br>  }))</pre> | `{}` | no |
+| <a name="input_user_name"></a> [user\_name](#input\_user\_name) | User name for ECR access. | `string` | n/a | yes |
 
 ## Outputs
 

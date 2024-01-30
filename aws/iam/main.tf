@@ -7,7 +7,7 @@ resource "aws_iam_policy" "generated_policy" {
 }
 
 resource "aws_iam_user" "user" {
-  name = var.ecr_user_name
+  name = var.user_name
 }
 
 resource "aws_iam_user_policy_attachment" "attachment" {
