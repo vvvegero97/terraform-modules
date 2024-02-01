@@ -36,3 +36,4 @@ terraform.rc
 backend.tf
 provider.tf
 terragrunt.hcl
+.terraform.lock.hcl
