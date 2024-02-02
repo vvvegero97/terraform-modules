@@ -25,8 +25,7 @@
 | Name | Type |
 |------|------|
 | [aws_s3_bucket.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
-| [aws_s3_bucket_acl.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
-| [aws_s3_bucket_policy.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
+| [aws_s3_bucket_public_access_block.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
 | [aws_s3_bucket_website_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration) | resource |
 
 ## Inputs
@@ -38,6 +37,8 @@
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_error_document"></a> [error\_document](#input\_error\_document) | Error document for S3 bucket Website configuration. | `string` | `"index.html"` | no |
 | <a name="input_index_document"></a> [index\_document](#input\_index\_document) | Index document for S3 bucket Website configuration. | `string` | `"index.html"` | no |
+| <a name="input_is_public"></a> [is\_public](#input\_is\_public) | If set to true, makes a bucket publicly accessible. | `bool` | `false` | no |
+| <a name="input_is_website"></a> [is\_website](#input\_is\_website) | If set to true, enables S3 website hosting. | `bool` | `false` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS Key ID to encrypt AWS SSM parameter. | `string` | `""` | no |
 
 ## Outputs

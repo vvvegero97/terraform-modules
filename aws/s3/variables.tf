@@ -32,3 +32,15 @@ variable "error_document" {
   default     = "index.html"
   description = "Error document for S3 bucket Website configuration."
 }
+
+variable "is_public" {
+  type        = bool
+  default     = false
+  description = "If set to true, makes a bucket publicly accessible."
+}
+
+variable "is_website" {
+  type        = bool
+  default     = false
+  description = "If set to true, enables S3 website hosting."
+}
