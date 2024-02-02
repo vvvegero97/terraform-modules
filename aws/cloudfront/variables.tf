@@ -4,12 +4,6 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
-variable "s3_domain_name" {
-  type        = string
-  default     = ""
-  description = "description"
-}
-
 variable "s3_website" {
   type        = bool
   default     = true
@@ -46,7 +40,7 @@ variable "locations" {
 }
 
 variable "custom_errors" {
-  description = "Map variable with custom error responces."
+  description = "List variable with custom error responces."
   type = list(object({
     error_code         = number
     response_code      = number
@@ -57,6 +51,26 @@ variable "custom_errors" {
       error_code         = 404
       response_code      = 200
       response_page_path = "index.html"
+    }
+  ]
+}
+
+variable "origins" {
+  description = "List variable with origins."
+  type = list(object({
+    origin_id   = string
+    origin_path = string
+    domain_name = string
+    http_port   = number
+    https_port  = number
+  }))
+  default = [
+    {
+      origin_id   = "default"
+      domain_name = "default.com"
+      origin_path = "/origin/*"
+      http_port   = 80
+      https_port  = 443
     }
   ]
 }

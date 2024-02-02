@@ -1,20 +1,21 @@
-locals {
-  s3_origin_id = "${var.s3_name}-origin"
-}
-
 #tfsec:ignore:aws-cloudfront-enable-waf tfsec:ignore:aws-cloudfront-enable-logging
 resource "aws_cloudfront_distribution" "s3_website_cdn" {
   count               = var.s3_website ? 1 : 0
   enabled             = true
   default_root_object = var.index_document
-  origin {
-    origin_id   = local.s3_origin_id
-    domain_name = var.s3_domain_name
-    custom_origin_config {
-      http_port              = 80
-      https_port             = 443
-      origin_protocol_policy = "http-only"
-      origin_ssl_protocols   = ["TLSv1"]
+
+  dynamic "origin" {
+    for_each = var.origins
+    content {
+      origin_id   = origin.value.origin_id
+      domain_name = origin.value.domain_name
+      origin_path = origin.value.origin_path
+      custom_origin_config {
+        http_port              = origin.value.http_port
+        https_port             = origin.value.https_port
+        origin_protocol_policy = "http-only"
+        origin_ssl_protocols   = ["TLSv1"]
+      }
     }
   }
 
@@ -28,7 +29,7 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   }
 
   default_cache_behavior {
-    target_origin_id = local.s3_origin_id
+    target_origin_id = var.origins[0].origin_id
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     forwarded_values {

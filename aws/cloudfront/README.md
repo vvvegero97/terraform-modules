@@ -28,13 +28,13 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_custom_errors"></a> [custom\_errors](#input\_custom\_errors) | Map variable with custom error responces. | <pre>list(object({<br>    error_code         = number<br>    response_code      = number<br>    response_page_path = string<br>  }))</pre> | <pre>[<br>  {<br>    "error_code": 404,<br>    "response_code": 200,<br>    "response_page_path": "index.html"<br>  }<br>]</pre> | no |
+| <a name="input_custom_errors"></a> [custom\_errors](#input\_custom\_errors) | List variable with custom error responces. | <pre>list(object({<br>    error_code         = number<br>    response_code      = number<br>    response_page_path = string<br>  }))</pre> | <pre>[<br>  {<br>    "error_code": 404,<br>    "response_code": 200,<br>    "response_page_path": "index.html"<br>  }<br>]</pre> | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_index_document"></a> [index\_document](#input\_index\_document) | Index document for S3 bucket Website configuration. | `string` | `"index.html"` | no |
 | <a name="input_locations"></a> [locations](#input\_locations) | List of locations for whitelist/blacklist. Uses 2-letter country codes. | `list(string)` | `[]` | no |
+| <a name="input_origins"></a> [origins](#input\_origins) | List variable with origins. | <pre>list(object({<br>    origin_id   = string<br>    origin_path = string<br>    domain_name = string<br>    http_port   = number<br>    https_port  = number<br>  }))</pre> | <pre>[<br>  {<br>    "domain_name": "default.com",<br>    "http_port": 80,<br>    "https_port": 443,<br>    "origin_id": "default",<br>    "origin_path": "/origin/*"<br>  }<br>]</pre> | no |
 | <a name="input_price_class"></a> [price\_class](#input\_price\_class) | AWS CloudFront PriceClass. | `string` | `"PriceClass_All"` | no |
 | <a name="input_restriction_type"></a> [restriction\_type](#input\_restriction\_type) | Restrict distribution of your content by country: none, whitelist, or blacklist. | `string` | `"none"` | no |
-| <a name="input_s3_domain_name"></a> [s3\_domain\_name](#input\_s3\_domain\_name) | description | `string` | `""` | no |
 | <a name="input_s3_name"></a> [s3\_name](#input\_s3\_name) | Name of S3 bucket to host from. | `string` | n/a | yes |
 | <a name="input_s3_website"></a> [s3\_website](#input\_s3\_website) | Configures distribution for S3-hosted website. | `bool` | `true` | no |
 
