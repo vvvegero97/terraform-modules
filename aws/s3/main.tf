@@ -34,4 +34,27 @@ module "iam" {
   create_user       = true
   user_name         = "${var.deployment_prefix}-${var.bucket_name}-user"
   kms_key_id        = var.kms_key_id
+  policy_map = {
+    "allow_objects" = {
+      name        = "S3-sync-policy"
+      description = "S3 sync policy for ${var.deployment_prefix}-${var.bucket_name}-user"
+      policy = jsonencode({
+        Version = "2012-10-17"
+        Statement = [
+          {
+            Sid      = "ListObjectsInBucket"
+            Effect   = "Allow"
+            Action   = ["s3:ListBucket"]
+            Resource = ["${aws_s3_bucket.this.arn}"]
+          },
+          {
+            Sid      = "AllObjectActions"
+            Effect   = "Allow"
+            Action   = "s3:*Object"
+            Resource = ["${aws_s3_bucket.this.arn}/*"]
+          }
+        ]
+      })
+    }
+  }
 }
