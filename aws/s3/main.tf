@@ -43,8 +43,8 @@ resource "aws_s3_bucket_policy" "this" {
 module "iam" {
   source            = "../iam"
   deployment_prefix = var.deployment_prefix
-  create_sync_user  = true
-  sync_user_name    = "${var.deployment_prefix}-${var.bucket_name}-user"
+  create_user       = true
+  user_name         = "${var.deployment_prefix}-${var.bucket_name}-user"
   kms_key_id        = var.kms_key_id
   policy_map = {
     "allow_objects" = {

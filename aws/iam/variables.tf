@@ -4,13 +4,13 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
-variable "create_sync_user" {
+variable "create_user" {
   type        = bool
   default     = false
   description = "If set to true, creates a new IAM user."
 }
 
-variable "sync_user_name" {
+variable "user_name" {
   description = "User name for policy mapping."
   type        = string
   default     = "default-user"
