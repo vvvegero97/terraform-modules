@@ -19,6 +19,7 @@ module "project_sg" {
 }
 
 resource "aws_security_group_rule" "docker_remote" {
+  count             = var.docker_remote_rule_enabled ? 1 : 0
   type              = "ingress"
   from_port         = 2376
   to_port           = 2376
@@ -29,6 +30,7 @@ resource "aws_security_group_rule" "docker_remote" {
 }
 
 resource "aws_security_group_rule" "docker_swarm" {
+  count             = var.docker_swarm_rule_enabled ? 1 : 0
   type              = "ingress"
   from_port         = 2377
   to_port           = 2377
