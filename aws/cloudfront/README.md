@@ -40,5 +40,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_distribution_url"></a> [distribution\_url](#output\_distribution\_url) | Distribution public URL. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
