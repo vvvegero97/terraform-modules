@@ -22,17 +22,22 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [aws_iam_access_key.this_user_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key) | resource |
 | [aws_iam_policy.generated_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
-| [aws_iam_user.user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
+| [aws_iam_user.this_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
 | [aws_iam_user_policy_attachment.attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_ssm_parameter.this_user_access_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.this_user_secret_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_create_user"></a> [create\_user](#input\_create\_user) | If set to true, creates a new IAM user. | `bool` | `false` | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
+| <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS Key ID to encrypt AWS SSM parameter. | `string` | `""` | no |
 | <a name="input_policy_map"></a> [policy\_map](#input\_policy\_map) | Map variable with policies | <pre>map(object({<br>    name        = string<br>    description = string<br>    policy      = string<br>  }))</pre> | `{}` | no |
-| <a name="input_user_name"></a> [user\_name](#input\_user\_name) | User name for ECR access. | `string` | n/a | yes |
+| <a name="input_user_name"></a> [user\_name](#input\_user\_name) | User name for policy mapping. | `string` | `"default-user"` | no |
 
 ## Outputs
 
