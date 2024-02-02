@@ -24,7 +24,7 @@ resource "aws_iam_access_key" "this_user_key" {
 
 resource "aws_ssm_parameter" "this_user_access_key" {
   count       = var.create_user ? 1 : 0
-  name        = "/${var.deployment_prefix}/s3_user/access_key"
+  name        = "/${var.deployment_prefix}/${var.user_name}/access_key"
   description = "S3 sync user's AWS Access Key for deployment: ${var.deployment_prefix}"
   tier        = "Standard"
   type        = "SecureString"
@@ -34,7 +34,7 @@ resource "aws_ssm_parameter" "this_user_access_key" {
 
 resource "aws_ssm_parameter" "this_user_secret_key" {
   count       = var.create_user ? 1 : 0
-  name        = "/${var.deployment_prefix}/s3_user/secret_key"
+  name        = "/${var.deployment_prefix}/${var.user_name}/secret_key"
   description = "S3 sync user's AWS Secret Key for deployment: ${var.deployment_prefix}"
   tier        = "Standard"
   type        = "SecureString"
