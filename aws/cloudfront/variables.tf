@@ -66,11 +66,12 @@ variable "origins" {
   }))
   default = [
     {
-      origin_id   = "default"
-      domain_name = "default.com"
-      origin_path = "/origin/*"
-      http_port   = 80
-      https_port  = 443
+      origin_id       = "default"
+      domain_name     = "default.com"
+      origin_path     = "/origin/*"
+      http_port       = 80
+      https_port      = 443
+      protocol_policy = "match-viewer"
     }
   ]
 }

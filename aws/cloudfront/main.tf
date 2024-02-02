@@ -13,7 +13,7 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
       custom_origin_config {
         http_port              = origin.value.http_port
         https_port             = origin.value.https_port
-        origin_protocol_policy = "http-only"
+        origin_protocol_policy = origin.value.protocol_policy
         origin_ssl_protocols   = ["TLSv1"]
       }
     }
