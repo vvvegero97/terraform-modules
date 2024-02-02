@@ -28,7 +28,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_custom_errors_map"></a> [custom\_errors\_map](#input\_custom\_errors\_map) | Map variable with custom error responces. | <pre>map(object({<br>    error_code         = number<br>    response_code      = number<br>    response_page_path = string<br>  }))</pre> | <pre>{<br>  "default": {<br>    "error_code": 404,<br>    "response_code": 200,<br>    "response_page_path": "index.html"<br>  }<br>}</pre> | no |
+| <a name="input_custom_errors"></a> [custom\_errors](#input\_custom\_errors) | Map variable with custom error responces. | <pre>list(object({<br>    error_code         = number<br>    response_code      = number<br>    response_page_path = string<br>  }))</pre> | <pre>[<br>  {<br>    "error_code": 404,<br>    "response_code": 200,<br>    "response_page_path": "index.html"<br>  }<br>]</pre> | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_index_document"></a> [index\_document](#input\_index\_document) | Index document for S3 bucket Website configuration. | `string` | `"index.html"` | no |
 | <a name="input_locations"></a> [locations](#input\_locations) | List of locations for whitelist/blacklist. Uses 2-letter country codes. | `list(string)` | `[]` | no |

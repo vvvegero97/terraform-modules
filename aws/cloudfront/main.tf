@@ -19,11 +19,11 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   }
 
   dynamic "custom_error_response" {
-    for_each = keys(var.custom_errors_map)
+    for_each = var.custom_errors
     content {
-      error_code         = var.custom_errors_map[custom_error_response.key].error_code
-      response_code      = var.custom_errors_map[custom_error_response.key].response_code
-      response_page_path = var.custom_errors_map[custom_error_response.key].response_page_path
+      error_code         = custom_error_response.value.error_code
+      response_code      = custom_error_response.value.response_code
+      response_page_path = custom_error_response.value.response_page_path
     }
   }
 

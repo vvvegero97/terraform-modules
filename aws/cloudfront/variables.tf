@@ -45,18 +45,18 @@ variable "locations" {
   description = "List of locations for whitelist/blacklist. Uses 2-letter country codes."
 }
 
-variable "custom_errors_map" {
+variable "custom_errors" {
   description = "Map variable with custom error responces."
-  type = map(object({
+  type = list(object({
     error_code         = number
     response_code      = number
     response_page_path = string
   }))
-  default = {
-    "default" = {
+  default = [
+    {
       error_code         = 404
       response_code      = 200
       response_page_path = "index.html"
     }
-  }
+  ]
 }
