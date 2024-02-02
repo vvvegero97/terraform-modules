@@ -17,6 +17,16 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
       origin_ssl_protocols   = ["TLSv1"]
     }
   }
+
+  dynamic "custom_error_response" {
+    for_each = keys(var.custom_errors_map)
+    content {
+      error_code         = var.custom_errors_map[custom_error_response.key].error_code
+      response_code      = var.custom_errors_map[custom_error_response.key].response_code
+      response_page_path = var.custom_errors_map[custom_error_response.key].response_page_path
+    }
+  }
+
   default_cache_behavior {
     target_origin_id = local.s3_origin_id
     allowed_methods  = ["GET", "HEAD"]
