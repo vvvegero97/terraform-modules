@@ -4,9 +4,16 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
-variable "user_name" {
-  description = "User name for ECR access."
+variable "create_sync_user" {
+  type        = bool
+  default     = false
+  description = "If set to true, creates a new IAM user."
+}
+
+variable "sync_user_name" {
+  description = "User name for policy mapping."
   type        = string
+  default     = "default-user"
 }
 
 variable "policy_map" {
@@ -17,4 +24,10 @@ variable "policy_map" {
     policy      = string
   }))
   default = {}
+}
+
+variable "kms_key_id" {
+  type        = string
+  default     = ""
+  description = "KMS Key ID to encrypt AWS SSM parameter."
 }
