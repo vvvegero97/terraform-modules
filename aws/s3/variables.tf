@@ -20,3 +20,15 @@ variable "kms_key_id" {
   default     = ""
   description = "KMS Key ID to encrypt AWS SSM parameter."
 }
+
+variable "index_document" {
+  type        = string
+  default     = "index.html"
+  description = "Index document for S3 bucket Website configuration."
+}
+
+variable "error_document" {
+  type        = string
+  default     = "index.html"
+  description = "Error document for S3 bucket Website configuration."
+}

@@ -36,6 +36,8 @@
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | AWS S3 bucket name. | `string` | n/a | yes |
 | <a name="input_create_sync_user"></a> [create\_sync\_user](#input\_create\_sync\_user) | If set to true, creates a new IAM user with bucket sync access policy. | `bool` | `false` | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
+| <a name="input_error_document"></a> [error\_document](#input\_error\_document) | Error document for S3 bucket Website configuration. | `string` | `"index.html"` | no |
+| <a name="input_index_document"></a> [index\_document](#input\_index\_document) | Index document for S3 bucket Website configuration. | `string` | `"index.html"` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS Key ID to encrypt AWS SSM parameter. | `string` | `""` | no |
 
 ## Outputs
