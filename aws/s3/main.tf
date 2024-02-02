@@ -19,13 +19,20 @@ resource "aws_s3_bucket_website_configuration" "this" {
 }
 
 #tfsec:ignore:aws-s3-block-public-acls tfsec:ignore:aws-s3-block-public-policy tfsec:ignore:aws-s3-ignore-public-acls tfsec:ignore:aws-s3-no-public-buckets
-resource "aws_s3_bucket_public_access_block" "example" {
+resource "aws_s3_bucket_public_access_block" "this" {
   bucket = aws_s3_bucket.this.id
 
   block_public_acls       = var.is_public ? true : false
   block_public_policy     = var.is_public ? true : false
   ignore_public_acls      = var.is_public ? true : false
   restrict_public_buckets = var.is_public ? true : false
+}
+
+resource "aws_s3_bucket_ownership_controls" "example" {
+  bucket = aws_s3_bucket.this.id
+  rule {
+    object_ownership = var.object_ownership
+  }
 }
 
 module "iam" {

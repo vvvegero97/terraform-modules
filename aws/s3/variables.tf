@@ -44,3 +44,9 @@ variable "is_website" {
   default     = false
   description = "If set to true, enables S3 website hosting."
 }
+
+variable "object_ownership" {
+  type        = string
+  default     = "BucketOwnerPreferred"
+  description = "S3 Object Ownership."
+}
