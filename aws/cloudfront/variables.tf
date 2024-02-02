@@ -58,11 +58,12 @@ variable "custom_errors" {
 variable "origins" {
   description = "List variable with origins."
   type = list(object({
-    origin_id   = string
-    origin_path = string
-    domain_name = string
-    http_port   = number
-    https_port  = number
+    origin_id       = string
+    origin_path     = string
+    domain_name     = string
+    http_port       = number
+    https_port      = number
+    protocol_policy = string
   }))
   default = [
     {
