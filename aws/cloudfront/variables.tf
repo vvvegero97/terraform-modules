@@ -35,7 +35,7 @@ variable "price_class" {
 
 variable "restriction_type" {
   type        = string
-  default     = ""
+  default     = "none"
   description = "Restrict distribution of your content by country: none, whitelist, or blacklist."
 }
 
