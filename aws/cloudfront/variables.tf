@@ -76,3 +76,9 @@ variable "origins" {
     }
   ]
 }
+
+variable "origin_ssl_protocols" {
+  type        = list(string)
+  default     = ["TLSv1.2"]
+  description = "List of origin SSL Protocols (default recommended."
+}

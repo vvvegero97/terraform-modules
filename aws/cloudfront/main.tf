@@ -14,17 +14,8 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
         http_port              = origin.value.http_port
         https_port             = origin.value.https_port
         origin_protocol_policy = origin.value.protocol_policy
-        origin_ssl_protocols   = ["TLSv1"]
+        origin_ssl_protocols   = var.origin_ssl_protocols
       }
-    }
-  }
-
-  dynamic "custom_error_response" {
-    for_each = var.custom_errors
-    content {
-      error_code         = custom_error_response.value.error_code
-      response_code      = custom_error_response.value.response_code
-      response_page_path = custom_error_response.value.response_page_path
     }
   }
 
@@ -43,6 +34,16 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
     default_ttl            = 0
     max_ttl                = 0
   }
+
+  dynamic "custom_error_response" {
+    for_each = var.custom_errors
+    content {
+      error_code         = custom_error_response.value.error_code
+      response_code      = custom_error_response.value.response_code
+      response_page_path = custom_error_response.value.response_page_path
+    }
+  }
+
   restrictions {
     geo_restriction {
       restriction_type = var.restriction_type

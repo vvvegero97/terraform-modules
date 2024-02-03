@@ -9,7 +9,7 @@ resource "aws_kms_key" "kms_deployment_key" {
   policy = <<EOT
 {
     "Version": "2012-10-17",
-    "Id": "${var.deployment_prefix}-key",
+    "Id": "${var.deployment_prefix}-${var.name}",
     "Statement": [
         {
             "Sid": "Enable IAM User Permissions",
@@ -26,7 +26,7 @@ EOT
 }
 
 resource "aws_kms_alias" "kms_deployment_key" {
-  name          = "alias/${var.deployment_prefix}-key"
+  name          = "alias/${var.deployment_prefix}-${var.name}"
   target_key_id = aws_kms_key.kms_deployment_key.key_id
 }
 

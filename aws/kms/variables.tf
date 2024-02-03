@@ -9,3 +9,9 @@ variable "aws_iam_service_linked_role_autoscaling" {
   type        = bool
   default     = false
 }
+
+variable "name" {
+  type        = string
+  default     = "key"
+  description = "KMS Key name."
+}

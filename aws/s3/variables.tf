@@ -50,3 +50,15 @@ variable "object_ownership" {
   default     = "BucketOwnerPreferred"
   description = "S3 Object Ownership."
 }
+
+variable "aws_s3_bucket_acl" {
+  type        = string
+  default     = "private"
+  description = "S3 bucket ACL."
+}
+
+variable "delete_objects_on_bucket_destroy" {
+  type        = bool
+  default     = false
+  description = "If set to 'true', deletes all objects on bucket deletion."
+}
