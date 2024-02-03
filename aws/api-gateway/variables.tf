@@ -24,18 +24,18 @@ variable "auto_deploy" {
 
 variable "methods" {
   description = "List of methods to create integrations for."
-  type = list(object({
+  type = map(object({
     source_method    = string
     source_url       = string
     integration_type = string
     connection_type  = string
   }))
-  default = [
-    {
+  default = {
+    "any" = {
       source_method    = "ANY"
       source_url       = "example.com"
       integration_type = "HTTP_PROXY"
       connection_type  = "INTERNET"
     }
-  ]
+  }
 }
