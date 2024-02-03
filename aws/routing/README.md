@@ -31,7 +31,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_domain"></a> [domain](#input\_domain) | The main Route53 domain. | `string` | n/a | yes |
-| <a name="input_record_map"></a> [record\_map](#input\_record\_map) | Map variable with records. | <pre>map(object({<br>    name    = string<br>    type    = string<br>    ttl     = string<br>    records = list(string)<br>  }))</pre> | `{}` | no |
+| <a name="input_record_map"></a> [record\_map](#input\_record\_map) | Map variable with records. | <pre>map(object({<br>    name                   = string<br>    type                   = string<br>    ttl                    = optional(string)<br>    records                = optional(list(string))<br>    alias_name             = optional(string)<br>    alias_zone_id          = optional(string)<br>    evaluate_target_health = optional(bool)<br>  }))</pre> | <pre>{<br>  "example1": {<br>    "name": "example1.com",<br>    "records": [<br>      "1.2.3.4"<br>    ],<br>    "ttl": "300",<br>    "type": "A"<br>  },<br>  "example2": {<br>    "alias_name": "example2.alias.com",<br>    "alias_zone_id": "us-east-1",<br>    "evaluate_target_health": false,<br>    "name": "example2.com",<br>    "type": "A"<br>  }<br>}</pre> | no |
 
 ## Outputs
 
