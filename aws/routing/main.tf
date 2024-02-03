@@ -15,11 +15,11 @@ resource "aws_route53_record" "custom_records" {
   zone_id = aws_route53_zone.primary.zone_id
   name    = each.value.name
   type    = each.value.type
-  ttl     = each.value.ttl
-  records = each.value.records
+  ttl     = can(each.value.ttl) && !can(each.value.alias_name) ? each.value.ttl : null
+  records = can(each.value.records) && !can(each.value.alias_name) ? each.value.records : null
 
   dynamic "alias" {
-    for_each = each.value.alias_name != "" ? [1] : [0]
+    for_each = can(each.value.alias_name) && !can(each.value.records) && !can(each.value.ttl) ? [1] : [0]
 
     content {
       name                   = each.value.alias_name
