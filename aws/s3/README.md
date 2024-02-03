@@ -25,7 +25,9 @@
 | Name | Type |
 |------|------|
 | [aws_s3_bucket.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
-| [aws_s3_bucket_ownership_controls.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_ownership_controls) | resource |
+| [aws_s3_bucket_acl.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
+| [aws_s3_bucket_ownership_controls.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_ownership_controls) | resource |
+| [aws_s3_bucket_policy.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
 | [aws_s3_bucket_public_access_block.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
 | [aws_s3_bucket_website_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration) | resource |
 
@@ -33,8 +35,10 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_aws_s3_bucket_acl"></a> [aws\_s3\_bucket\_acl](#input\_aws\_s3\_bucket\_acl) | S3 bucket ACL. | `string` | `"private"` | no |
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | AWS S3 bucket name. | `string` | n/a | yes |
 | <a name="input_create_sync_user"></a> [create\_sync\_user](#input\_create\_sync\_user) | If set to true, creates a new IAM user with bucket sync access policy. | `bool` | `false` | no |
+| <a name="input_delete_objects_on_bucket_destroy"></a> [delete\_objects\_on\_bucket\_destroy](#input\_delete\_objects\_on\_bucket\_destroy) | If set to 'true', deletes all objects on bucket deletion. | `bool` | `false` | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_error_document"></a> [error\_document](#input\_error\_document) | Error document for S3 bucket Website configuration. | `string` | `"index.html"` | no |
 | <a name="input_index_document"></a> [index\_document](#input\_index\_document) | Index document for S3 bucket Website configuration. | `string` | `"index.html"` | no |

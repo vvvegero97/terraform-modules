@@ -19,6 +19,25 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
     }
   }
 
+  dynamic "default_cache_behavior" {
+    for_each = var.origins
+    content {
+      target_origin_id = each.value.origin_id
+      allowed_methods  = ["GET", "HEAD"]
+      cached_methods   = ["GET", "HEAD"]
+      forwarded_values {
+        query_string = true
+        cookies {
+          forward = "all"
+        }
+      }
+      viewer_protocol_policy = "redirect-to-https"
+      min_ttl                = 0
+      default_ttl            = 0
+      max_ttl                = 0
+    }
+  }
+
   dynamic "custom_error_response" {
     for_each = var.custom_errors
     content {
@@ -28,21 +47,6 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
     }
   }
 
-  default_cache_behavior {
-    target_origin_id = var.origins[0].origin_id
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
-    forwarded_values {
-      query_string = true
-      cookies {
-        forward = "all"
-      }
-    }
-    viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 0
-    max_ttl                = 0
-  }
   restrictions {
     geo_restriction {
       restriction_type = var.restriction_type

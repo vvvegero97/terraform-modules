@@ -8,7 +8,7 @@ resource "aws_apigatewayv2_api" "this" {
 resource "aws_apigatewayv2_stage" "this" {
   api_id      = aws_apigatewayv2_api.this.id
   name        = var.api_gw_stage_name
-  auto_deploy = var.auto_deploy ? true : false
+  auto_deploy = var.auto_deploy
 }
 
 resource "aws_apigatewayv2_integration" "this" {
@@ -25,6 +25,6 @@ resource "aws_apigatewayv2_route" "this" {
   for_each = var.methods
   api_id   = aws_apigatewayv2_api.this.id
 
-  route_key = "${each.value.source_method} ${var.api_route}}"
+  route_key = "${each.value.source_method}${var.api_route}}" # whitespace between??
   target    = "integrations/${aws_apigatewayv2_integration.this[each.key].id}"
 }
