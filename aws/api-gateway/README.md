@@ -33,6 +33,8 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_api_gw_protocol_type"></a> [api\_gw\_protocol\_type](#input\_api\_gw\_protocol\_type) | Api Gateway Protocol Type. | `string` | `"HTTP"` | no |
 | <a name="input_api_gw_stage_name"></a> [api\_gw\_stage\_name](#input\_api\_gw\_stage\_name) | Api Gateway Stage Name. | `string` | `"prod"` | no |
+| <a name="input_api_route"></a> [api\_route](#input\_api\_route) | API Route. | `string` | `"/app/{proxy+}"` | no |
+| <a name="input_api_target"></a> [api\_target](#input\_api\_target) | API Gateway default target | `string` | `"http://example.com/{proxy+}"` | no |
 | <a name="input_auto_deploy"></a> [auto\_deploy](#input\_auto\_deploy) | If true, enables auto deploy for stage. | `bool` | `true` | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_methods"></a> [methods](#input\_methods) | List of methods to create integrations for. | <pre>map(object({<br>    source_method    = string<br>    source_url       = string<br>    integration_type = string<br>    connection_type  = string<br>  }))</pre> | <pre>{<br>  "any": {<br>    "connection_type": "INTERNET",<br>    "integration_type": "HTTP_PROXY",<br>    "source_method": "ANY",<br>    "source_url": "example.com"<br>  }<br>}</pre> | no |
