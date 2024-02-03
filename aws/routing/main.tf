@@ -10,21 +10,25 @@ resource "aws_route53_zone" "primary" {
 
 # Create Route53 DNS records from the map variable
 resource "aws_route53_record" "custom_records" {
-  for_each = var.record_map
+  for_each = { for name, record in var.record_map : name => record if lookup(record, "ttl", null) != null }
 
   zone_id = aws_route53_zone.primary.zone_id
   name    = each.value.name
   type    = each.value.type
-  ttl     = can(each.value.ttl) && !can(each.value.alias_name) ? each.value.ttl : null
-  records = can(each.value.records) && !can(each.value.alias_name) ? each.value.records : null
+  ttl     = lookup(each.value, "ttl", null)
+  records = lookup(each.value, "records", null)
+}
 
-  dynamic "alias" {
-    for_each = can(each.value.alias_name) && !can(each.value.records) && !can(each.value.ttl) ? [1] : [0]
+resource "aws_route53_record" "alias_records" {
+  for_each = { for name, record in var.record_map : name => record if lookup(record, "ttl", null) == null }
 
-    content {
-      name                   = each.value.alias_name
-      zone_id                = each.value.alias_zone_id
-      evaluate_target_health = each.value.evaluate_target_health
-    }
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = each.value.name
+  type    = "A"
+
+  alias {
+    name                   = lookup(each.value, "alias_name", null)
+    zone_id                = lookup(each.value, "alias_zone_id", null)
+    evaluate_target_health = lookup(each.value, "evaluate_target_health", null)
   }
 }

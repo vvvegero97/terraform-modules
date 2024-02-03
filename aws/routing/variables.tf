@@ -13,7 +13,7 @@ variable "record_map" {
   description = "Map variable with records."
   type = map(object({
     name                   = string
-    type                   = string
+    type                   = optional(string)
     ttl                    = optional(string)
     records                = optional(list(string))
     alias_name             = optional(string)
