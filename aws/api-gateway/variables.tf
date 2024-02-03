@@ -4,11 +4,11 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
-variable "api_target" {
-  type        = string
-  default     = "http://example.com/{proxy+}"
-  description = "API Gateway default target"
-}
+# variable "api_target" {
+#   type        = string
+#   default     = "http://example.com/{proxy}"
+#   description = "API Gateway default target"
+# }
 
 variable "api_route" {
   type        = string

@@ -14,7 +14,7 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
         http_port              = origin.value.http_port
         https_port             = origin.value.https_port
         origin_protocol_policy = origin.value.protocol_policy
-        origin_ssl_protocols   = ["TLSv1.2"]
+        origin_ssl_protocols   = var.origin_ssl_protocols
       }
     }
   }
