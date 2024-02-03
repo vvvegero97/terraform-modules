@@ -19,7 +19,7 @@ resource "aws_route53_record" "custom_records" {
   records = each.value.records
 
   dynamic "alias" {
-    for_each = each.value.alias_name ? [1] : [0]
+    for_each = each.value.alias_name != "" ? [1] : [0]
 
     content {
       name                   = each.value.alias_name
