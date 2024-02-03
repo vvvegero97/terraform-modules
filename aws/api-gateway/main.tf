@@ -25,6 +25,6 @@ resource "aws_apigatewayv2_route" "this" {
   for_each = var.methods
   api_id   = aws_apigatewayv2_api.this.id
 
-  route_key = "${each.value.source_method}${var.api_route}}" # whitespace between??
+  route_key = "${each.value.source_method} ${var.api_route}}"
   target    = "integrations/${aws_apigatewayv2_integration.this[each.key].id}"
 }
