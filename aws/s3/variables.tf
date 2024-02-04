@@ -67,23 +67,23 @@ variable "put_objects" {
   type = map(object({
     bucket_key = string
     source     = string
-    file       = bool
+    is_file    = bool
     acl        = optional(string)
   }))
   default = {
     # "my_file" = {
-    #   file = true
+    #   is_file = true
     #   bucket_key = "path/to/bucket/target/object"
     #   source     = "path/to/source/my_file"
     # }
     # "my_public_file" = {
-    #   file = true
+    #   is_file = true
     #   bucket_key = "path/to/bucket/target/object"
     #   source     = "path/to/source/my_public_file"
     #   acl        = "public-read"
     # }
     # "my_folder" = {
-    #   file = false
+    #   is_file = false
     #   bucket_key = "path/to/bucket/target/object/my_folder/"
     #   source     = "path/to/source/my_folder/"
     # }

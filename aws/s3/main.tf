@@ -11,7 +11,7 @@ resource "aws_s3_object" "this" {
   key      = each.value.bucket_key
   source   = "source_files/${each.value.source}"
   acl      = lookup(each.value, "acl", "private")
-  etag     = each.value.file ? filemd5("source_files/${each.value.source}") : null
+  etag     = each.value.is_file ? filemd5("source_files/${each.value.source}") : null
 }
 
 
