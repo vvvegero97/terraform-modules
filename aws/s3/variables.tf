@@ -67,18 +67,26 @@ variable "put_objects" {
   type = map(object({
     bucket_key = string
     source     = string
+    file       = bool
     acl        = optional(string)
   }))
   default = {
-    "my_file" = {
-      bucket_key = "path/to/bucket/target/object"
-      source     = "path/to/source/file"
-    }
-    "my_public_file" = {
-      bucket_key = "path/to/bucket/target/object"
-      source     = "path/to/source/file"
-      acl        = "public-read"
-    }
+    # "my_file" = {
+    #   file = true
+    #   bucket_key = "path/to/bucket/target/object"
+    #   source     = "path/to/source/my_file"
+    # }
+    # "my_public_file" = {
+    #   file = true
+    #   bucket_key = "path/to/bucket/target/object"
+    #   source     = "path/to/source/my_public_file"
+    #   acl        = "public-read"
+    # }
+    # "my_folder" = {
+    #   file = false
+    #   bucket_key = "path/to/bucket/target/object/my_folder/"
+    #   source     = "path/to/source/my_folder/"
+    # }
   }
-  description = "List of files to put in a bucket after creation."
+  description = "Map of objects to put in a bucket after creation. Files should be located in source_files directory."
 }

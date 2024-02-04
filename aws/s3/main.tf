@@ -9,9 +9,9 @@ resource "aws_s3_object" "this" {
   for_each = var.put_objects
   bucket   = aws_s3_bucket.this.id
   key      = each.value.bucket_key
-  source   = each.value.source
+  source   = "source_files/${each.value.source}"
   acl      = lookup(each.value, "acl", "private")
-  etag     = filemd5("${each.value.source}")
+  etag     = each.value.file ? filemd5("source_files/${each.value.source}") : null
 }
 
 
