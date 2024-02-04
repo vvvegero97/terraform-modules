@@ -88,5 +88,5 @@ variable "put_objects" {
     #   source     = "path/to/source/my_folder/"
     # }
   }
-  description = "Map of objects to put in a bucket after creation. Files should be located in source_files directory."
+  description = "Map of objects to put in a bucket after creation. Files should be located in put_objects directory."
 }

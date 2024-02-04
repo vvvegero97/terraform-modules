@@ -47,7 +47,7 @@
 | <a name="input_is_website"></a> [is\_website](#input\_is\_website) | If set to true, enables S3 website hosting. | `bool` | `false` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS Key ID to encrypt AWS SSM parameter. | `string` | `""` | no |
 | <a name="input_object_ownership"></a> [object\_ownership](#input\_object\_ownership) | S3 Object Ownership. | `string` | `"BucketOwnerPreferred"` | no |
-| <a name="input_put_objects"></a> [put\_objects](#input\_put\_objects) | Map of objects to put in a bucket after creation. Files should be located in source\_files directory. | <pre>map(object({<br>    bucket_key = string<br>    source     = string<br>    is_file    = bool<br>    acl        = optional(string)<br>  }))</pre> | `{}` | no |
+| <a name="input_put_objects"></a> [put\_objects](#input\_put\_objects) | Map of objects to put in a bucket after creation. Files should be located in put\_objects directory. | <pre>map(object({<br>    bucket_key = string<br>    source     = string<br>    is_file    = bool<br>    acl        = optional(string)<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
