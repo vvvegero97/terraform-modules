@@ -12,6 +12,34 @@ resource "aws_iam_user_policy_attachment" "attachment" {
   policy_arn = aws_iam_policy.generated_policy[each.key].arn
 }
 
+resource "aws_iam_role" "ecr_access_role" {
+  count = var.create_ec2_role ? 1 : 0
+  name  = "${var.deployment_prefix}-ecr-access-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+locals {
+  enabled_policies = var.create_ec2_role ? var.policy_map : {}
+}
+
+resource "aws_iam_role_policy_attachment" "ec2_role_attachment" {
+  for_each   = local.enabled_policies
+  role       = aws_iam_role.ecr_access_role[0].name
+  policy_arn = aws_iam_policy.generated_policy[each.key].arn
+}
+
 resource "aws_iam_user" "this_user" {
   count = var.create_user ? 1 : 0
   name  = var.user_name

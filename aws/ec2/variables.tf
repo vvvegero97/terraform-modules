@@ -74,3 +74,9 @@ variable "instance_type" {
   default     = "t3.medium"
   description = "EC2 instance type."
 }
+
+variable "ecr_access_role_name" {
+  type        = string
+  default     = "example-ecr-role-name"
+  description = "Name of the role with ECR and KMS Access Policy."
+}

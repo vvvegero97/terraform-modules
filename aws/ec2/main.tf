@@ -12,6 +12,7 @@ module "ec2_instance" {
   subnet_id                   = var.subnet_id
   disable_api_termination     = var.disable_api_termination
   associate_public_ip_address = var.enable_eip ? null : true
+  iam_instance_profile        = var.ecr_access_role_name
 
   user_data_base64 = var.user_data_base64
 
