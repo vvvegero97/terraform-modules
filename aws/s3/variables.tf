@@ -64,15 +64,21 @@ variable "delete_objects_on_bucket_destroy" {
 }
 
 variable "put_objects" {
-  type = list(object({
+  type = map(object({
     bucket_key = string
     source     = string
+    acl        = optional(string)
   }))
-  default = [
-    {
+  default = {
+    "my_file" = {
       bucket_key = "path/to/bucket/target/object"
       source     = "path/to/source/file"
     }
-  ]
+    "my_public_file" = {
+      bucket_key = "path/to/bucket/target/object"
+      source     = "path/to/source/file"
+      acl        = "public-read"
+    }
+  }
   description = "List of files to put in a bucket after creation."
 }
