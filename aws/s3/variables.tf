@@ -62,3 +62,17 @@ variable "delete_objects_on_bucket_destroy" {
   default     = false
   description = "If set to 'true', deletes all objects on bucket deletion."
 }
+
+variable "put_objects" {
+  type = list(object({
+    bucket_key = string
+    source     = string
+  }))
+  default = [
+    {
+      bucket_key = "path/to/bucket/target/object"
+      source     = "path/to/source/file"
+    }
+  ]
+  description = "List of files to put in a bucket after creation."
+}

@@ -26,6 +26,7 @@
 |------|------|
 | [aws_s3_bucket.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket_acl.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
+| [aws_s3_bucket_object.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object) | resource |
 | [aws_s3_bucket_ownership_controls.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_ownership_controls) | resource |
 | [aws_s3_bucket_policy.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
 | [aws_s3_bucket_public_access_block.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
@@ -46,6 +47,7 @@
 | <a name="input_is_website"></a> [is\_website](#input\_is\_website) | If set to true, enables S3 website hosting. | `bool` | `false` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS Key ID to encrypt AWS SSM parameter. | `string` | `""` | no |
 | <a name="input_object_ownership"></a> [object\_ownership](#input\_object\_ownership) | S3 Object Ownership. | `string` | `"BucketOwnerPreferred"` | no |
+| <a name="input_put_objects"></a> [put\_objects](#input\_put\_objects) | List of files to put in a bucket after creation. | <pre>list(object({<br>    bucket_key = string<br>    source     = string<br>  }))</pre> | <pre>[<br>  {<br>    "bucket_key": "path/to/bucket/target/object",<br>    "source": "path/to/source/file"<br>  }<br>]</pre> | no |
 
 ## Outputs
 

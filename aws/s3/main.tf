@@ -5,6 +5,13 @@ resource "aws_s3_bucket" "this" {
   force_destroy = var.delete_objects_on_bucket_destroy
 }
 
+resource "aws_s3_bucket_object" "example" {
+  for_each = var.put_objects
+  bucket   = aws_s3_bucket.this.id
+  key      = each.value.bucket_key
+  source   = each.value.source
+}
+
 resource "aws_s3_bucket_ownership_controls" "this" {
   bucket = aws_s3_bucket.this.id
   rule {
