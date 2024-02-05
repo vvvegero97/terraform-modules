@@ -9,14 +9,17 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
     origin_access_control_id = aws_cloudfront_origin_access_control.s3.id
   }
 
-  origin {
-    origin_id   = var.api_origin.origin_id
-    domain_name = var.api_origin.domain_name
-    custom_origin_config {
-      http_port              = var.api_origin.http_port
-      https_port             = var.api_origin.https_port
-      origin_protocol_policy = var.api_origin.protocol_policy
-      origin_ssl_protocols   = var.origin_ssl_protocols
+  dynamic "origin" {
+    for_each = var.api_origin != null ? toset([1]) : toset([])
+    content {
+      origin_id   = var.api_origin.origin_id
+      domain_name = var.api_origin.domain_name
+      custom_origin_config {
+        http_port              = var.api_origin.http_port
+        https_port             = var.api_origin.https_port
+        origin_protocol_policy = var.api_origin.protocol_policy
+        origin_ssl_protocols   = var.origin_ssl_protocols
+      }
     }
   }
 
@@ -31,15 +34,18 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   }
 
   #tfsec:ignore:aws-cloudfront-enforce-https
-  ordered_cache_behavior {
-    target_origin_id         = var.api_origin.origin_id
-    path_pattern             = var.api_origin.origin_path
-    allowed_methods          = lookup(var.api_origin, "allowed_methods", ["GET", "HEAD"])
-    cached_methods           = lookup(var.api_origin, "cached_methods", [])
-    viewer_protocol_policy   = "redirect-to-https"
-    cache_policy_id          = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
-    origin_request_policy_id = "b689b0a8-53d0-40ab-baf2-68738e2966ac"
-    compress                 = true
+  dynamic "ordered_cache_behavior" {
+    for_each = var.api_origin != null ? toset([1]) : toset([])
+    content {
+      target_origin_id         = var.api_origin.origin_id
+      path_pattern             = var.api_origin.origin_path
+      allowed_methods          = lookup(var.api_origin, "allowed_methods", ["GET", "HEAD"])
+      cached_methods           = lookup(var.api_origin, "cached_methods", [])
+      viewer_protocol_policy   = "redirect-to-https"
+      cache_policy_id          = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
+      origin_request_policy_id = "b689b0a8-53d0-40ab-baf2-68738e2966ac"
+      compress                 = true
+    }
   }
 
   dynamic "custom_error_response" {

@@ -88,6 +88,7 @@ variable "api_origin" {
     cached_methods  = list(string)
   })
   description = "API Gateway Origin parameters."
+  default     = null
 }
 
 variable "s3_bucket_arn" {
