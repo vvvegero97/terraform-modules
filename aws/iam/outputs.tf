@@ -4,6 +4,6 @@ output "ec2_role_name" {
 }
 
 output "user_arn" {
-  value       = var.create_user ? aws_iam_user.this_user[0].arn : null
+  value       = var.create_user ? aws_iam_user.this_user.*.arn : null
   description = "ARN of the created user."
 }
