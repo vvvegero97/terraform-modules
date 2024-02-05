@@ -70,10 +70,11 @@ variable "delete_objects_on_bucket_destroy" {
 
 variable "put_objects" {
   type = map(object({
-    bucket_key = string
-    source     = string
-    is_file    = bool
-    acl        = optional(string)
+    bucket_key   = string
+    source       = string
+    is_file      = bool
+    acl          = optional(string)
+    content_type = optional(string)
   }))
   default = {
     # "my_file" = {

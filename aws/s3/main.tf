@@ -6,12 +6,13 @@ resource "aws_s3_bucket" "this" {
 }
 
 resource "aws_s3_object" "this" {
-  for_each = var.put_objects
-  bucket   = aws_s3_bucket.this.id
-  key      = each.value.bucket_key
-  source   = "put_objects/${each.value.source}"
-  acl      = lookup(each.value, "acl", "private")
-  etag     = each.value.is_file ? filemd5("put_objects/${each.value.source}") : null
+  for_each     = var.put_objects
+  bucket       = aws_s3_bucket.this.id
+  key          = each.value.bucket_key
+  source       = "put_objects/${each.value.source}"
+  content_type = lookup(each.value, "content_type", "text/html")
+  acl          = lookup(each.value, "acl", "private")
+  etag         = each.value.is_file ? filemd5("put_objects/${each.value.source}") : null
 }
 
 

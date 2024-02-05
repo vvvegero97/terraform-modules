@@ -46,7 +46,7 @@
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS Key ID to encrypt AWS SSM parameter. | `string` | `""` | no |
 | <a name="input_object_ownership"></a> [object\_ownership](#input\_object\_ownership) | S3 Object Ownership. | `string` | `"BucketOwnerPreferred"` | no |
 | <a name="input_public_acl_block"></a> [public\_acl\_block](#input\_public\_acl\_block) | Public ACL Block switches. | `map(bool)` | <pre>{<br>  "block_public_acls": false,<br>  "block_public_policy": false,<br>  "ignore_public_acls": false,<br>  "restrict_public_buckets": false<br>}</pre> | no |
-| <a name="input_put_objects"></a> [put\_objects](#input\_put\_objects) | Map of objects to put in a bucket after creation. Files should be located in put\_objects directory. | <pre>map(object({<br>    bucket_key = string<br>    source     = string<br>    is_file    = bool<br>    acl        = optional(string)<br>  }))</pre> | `{}` | no |
+| <a name="input_put_objects"></a> [put\_objects](#input\_put\_objects) | Map of objects to put in a bucket after creation. Files should be located in put\_objects directory. | <pre>map(object({<br>    bucket_key   = string<br>    source       = string<br>    is_file      = bool<br>    acl          = optional(string)<br>    content_type = optional(string)<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
