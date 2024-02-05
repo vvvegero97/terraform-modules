@@ -6,12 +6,12 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
     origin_id                = var.s3_origin.origin_id
     domain_name              = var.s3_origin.domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.s3.id
-    custom_origin_config {
-      http_port              = var.s3_origin.http_port
-      https_port             = var.s3_origin.https_port
-      origin_protocol_policy = var.s3_origin.protocol_policy
-      origin_ssl_protocols   = var.origin_ssl_protocols
-    }
+    # custom_origin_config {
+    #   http_port              = var.s3_origin.http_port
+    #   https_port             = var.s3_origin.https_port
+    #   origin_protocol_policy = var.s3_origin.protocol_policy
+    #   origin_ssl_protocols   = var.origin_ssl_protocols
+    # }
   }
 
   origin {
