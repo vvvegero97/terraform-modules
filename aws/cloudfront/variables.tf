@@ -4,6 +4,18 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
+variable "aliases" {
+  type        = list(string)
+  default     = []
+  description = "List of CNAMEs for this CloudFront Distribution."
+}
+
+variable "acm_certificate_arn" {
+  type        = string
+  default     = "none"
+  description = "ACM Certificate for alias domain."
+}
+
 variable "enable_ipv6" {
   type        = bool
   default     = false

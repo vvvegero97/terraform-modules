@@ -1,6 +1,7 @@
 #tfsec:ignore:aws-cloudfront-enable-waf tfsec:ignore:aws-cloudfront-enable-logging
 resource "aws_cloudfront_distribution" "s3_website_cdn" {
   enabled         = true
+  aliases         = var.aliases
   is_ipv6_enabled = var.enable_ipv6
   origin {
     origin_id                = var.s3_origin.origin_id
@@ -59,7 +60,8 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   }
   #tfsec:ignore:aws-cloudfront-use-secure-tls-policy
   viewer_certificate {
-    cloudfront_default_certificate = true
+    cloudfront_default_certificate = var.acm_certificate_arn == "none" ? true : null
+    acm_certificate_arn            = var.acm_certificate_arn == "none" ? null : var.acm_certificate_arn
   }
   price_class = var.price_class
 }
