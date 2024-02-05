@@ -55,26 +55,50 @@ variable "custom_errors" {
   ]
 }
 
-variable "origins" {
-  description = "List variable with origins."
-  type = list(object({
+variable "s3_origin" {
+  type = object({
+    origin_id       = string
+    domain_name     = string
+    origin_path     = string
+    http_port       = number
+    https_port      = number
+    protocol_policy = string
+    allowed_methods = list(string)
+    cached_methods  = list(string)
+  })
+  description = "S3 Origin parameters."
+}
+
+variable "api_origin" {
+  type = object({
     origin_id       = string
     origin_path     = string
     domain_name     = string
     http_port       = number
     https_port      = number
     protocol_policy = string
-  }))
-  default = [
-    {
-      origin_id       = "default"
-      domain_name     = "default.com"
-      origin_path     = "/origin/*"
-      http_port       = 80
-      https_port      = 443
-      protocol_policy = "match-viewer"
-    }
-  ]
+    allowed_methods = list(string)
+    cached_methods  = list(string)
+  })
+  description = "API Gateway Origin parameters."
+}
+
+variable "s3_bucket_arn" {
+  type        = string
+  default     = ""
+  description = "S3 Bucket ARN."
+}
+
+variable "s3_bucket_name" {
+  type        = string
+  default     = ""
+  description = "S3 Bucket Name."
+}
+
+variable "s3_user_arn" {
+  type        = string
+  default     = ""
+  description = "S3 user ARN."
 }
 
 variable "origin_ssl_protocols" {

@@ -48,4 +48,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_ec2_role_name"></a> [ec2\_role\_name](#output\_ec2\_role\_name) | Name of the created EC2 role. |
+| <a name="output_user_arn"></a> [user\_arn](#output\_user\_arn) | ARN of the created user. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -32,10 +32,10 @@ resource "aws_s3_bucket_acl" "this" {
 resource "aws_s3_bucket_public_access_block" "this" {
   bucket = aws_s3_bucket.this.id
 
-  block_public_acls       = var.is_public ? false : true
-  block_public_policy     = var.is_public ? false : true
-  ignore_public_acls      = var.is_public ? false : true
-  restrict_public_buckets = var.is_public ? false : true
+  block_public_acls       = lookup(var.public_acl_block, "block_public_acls", true)
+  block_public_policy     = lookup(var.public_acl_block, "block_public_policy", true)
+  ignore_public_acls      = lookup(var.public_acl_block, "ignore_public_acls", true)
+  restrict_public_buckets = lookup(var.public_acl_block, "restrict_public_buckets", true)
 }
 
 module "iam" {
@@ -52,16 +52,16 @@ module "iam" {
         Version = "2012-10-17"
         Statement = [
           {
-            Sid      = "ListObjectsInBucket"
-            Effect   = "Allow"
-            Action   = ["s3:ListBucket"]
-            Resource = ["${aws_s3_bucket.this.arn}"]
-          },
-          {
-            Sid      = "AllObjectActions"
-            Effect   = "Allow"
-            Action   = "s3:*Object"
-            Resource = ["${aws_s3_bucket.this.arn}/*"]
+            Sid    = "VisualEditor0"
+            Effect = "Allow"
+            Action = [
+              "s3:ListBucket",
+              "s3:*Object"
+            ]
+            Resource = [
+              "${aws_s3_bucket.this.arn}",
+              "${aws_s3_bucket.this.arn}/*"
+            ]
           }
         ]
       })
@@ -79,21 +79,4 @@ resource "aws_s3_bucket_website_configuration" "this" {
   error_document {
     key = var.error_document
   }
-}
-
-resource "aws_s3_bucket_policy" "this" {
-  count  = var.is_website ? 1 : 0
-  bucket = aws_s3_bucket.this.id
-  policy = jsonencode({
-    Version = 2012 - 10 - 17
-    Statement = [
-      {
-        Sid       = "AllowPublic"
-        Effect    = "Allow"
-        Principal = "*"
-        Action    = ["s3:GetObject"]
-        Resource  = ["${aws_s3_bucket.this.arn}/**"]
-      }
-    ]
-  })
 }

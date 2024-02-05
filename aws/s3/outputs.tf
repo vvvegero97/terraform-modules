@@ -8,6 +8,11 @@ output "created_sync_user_name" {
   description = "Generated sync user name."
 }
 
+output "created_sync_user_arn" {
+  value       = module.iam.user_arn
+  description = "Generated sync user ARN."
+}
+
 output "bucket_name" {
   value       = aws_s3_bucket.this.id
   description = "S3 bucket name."

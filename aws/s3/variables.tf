@@ -33,10 +33,15 @@ variable "error_document" {
   description = "Error document for S3 bucket Website configuration."
 }
 
-variable "is_public" {
-  type        = bool
-  default     = false
-  description = "If set to true, makes a bucket publicly accessible."
+variable "public_acl_block" {
+  type = map(bool)
+  default = {
+    block_public_acls       = false
+    block_public_policy     = false
+    ignore_public_acls      = false
+    restrict_public_buckets = false
+  }
+  description = "Public ACL Block switches."
 }
 
 variable "is_website" {

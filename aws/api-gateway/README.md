@@ -42,5 +42,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_api_gateway_url"></a> [api\_gateway\_url](#output\_api\_gateway\_url) | API Gateway Invoke URL. |
+| <a name="output_api_gateway_url"></a> [api\_gateway\_url](#output\_api\_gateway\_url) | API Gateway URL. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
