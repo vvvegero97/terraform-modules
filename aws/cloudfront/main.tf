@@ -62,6 +62,7 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   viewer_certificate {
     cloudfront_default_certificate = var.acm_certificate_arn == "none" ? true : null
     acm_certificate_arn            = var.acm_certificate_arn == "none" ? null : var.acm_certificate_arn
+    ssl_support_method             = var.acm_certificate_arn == "none" ? null : "sni-only"
   }
   price_class = var.price_class
 }
