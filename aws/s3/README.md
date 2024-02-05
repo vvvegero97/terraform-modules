@@ -53,8 +53,9 @@
 | Name | Description |
 |------|-------------|
 | <a name="output_bucket_arn"></a> [bucket\_arn](#output\_bucket\_arn) | AWS S3 bucket ARN. |
+| <a name="output_bucket_domain_name"></a> [bucket\_domain\_name](#output\_bucket\_domain\_name) | S3 regional domain name. |
 | <a name="output_bucket_name"></a> [bucket\_name](#output\_bucket\_name) | S3 bucket name. |
 | <a name="output_created_sync_user_arn"></a> [created\_sync\_user\_arn](#output\_created\_sync\_user\_arn) | Generated sync user ARN. |
 | <a name="output_created_sync_user_name"></a> [created\_sync\_user\_name](#output\_created\_sync\_user\_name) | Generated sync user name. |
-| <a name="output_website_domain_name"></a> [website\_domain\_name](#output\_website\_domain\_name) | S3 regional domain name. |
+| <a name="output_website_domain_name"></a> [website\_domain\_name](#output\_website\_domain\_name) | S3 regional website domain name. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

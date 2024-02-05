@@ -18,7 +18,12 @@ output "bucket_name" {
   description = "S3 bucket name."
 }
 
+output "bucket_domain_name" {
+  value       = aws_s3_bucket.this.bucket_domain_name
+  description = "S3 regional domain name."
+}
+
 output "website_domain_name" {
   value       = aws_s3_bucket_website_configuration.this.*.website_domain
-  description = "S3 regional domain name."
+  description = "S3 regional website domain name."
 }
