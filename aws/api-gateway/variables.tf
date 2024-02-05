@@ -4,18 +4,6 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
-# variable "api_target" {
-#   type        = string
-#   default     = "http://example.com/{proxy}"
-#   description = "API Gateway default target"
-# }
-
-variable "api_route" {
-  type        = string
-  default     = "/app/{proxy+}"
-  description = "API Route."
-}
-
 variable "api_gw_protocol_type" {
   type        = string
   default     = "HTTP"
@@ -41,6 +29,7 @@ variable "methods" {
     source_url       = string
     integration_type = string
     connection_type  = string
+    api_route        = string
   }))
   default = {
     "any" = {
@@ -48,6 +37,7 @@ variable "methods" {
       source_url       = "example.com"
       integration_type = "HTTP_PROXY"
       connection_type  = "INTERNET"
+      api_route        = "/{proxy+}"
     }
   }
 }
