@@ -4,6 +4,12 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
+variable "enable_ipv6" {
+  type        = bool
+  default     = false
+  description = "If set to 'true', enables IPv6 for CloudFront Distributions."
+}
+
 variable "index_document" {
   type        = string
   default     = "index.html"

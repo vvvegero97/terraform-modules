@@ -1,17 +1,11 @@
 #tfsec:ignore:aws-cloudfront-enable-waf tfsec:ignore:aws-cloudfront-enable-logging
 resource "aws_cloudfront_distribution" "s3_website_cdn" {
-  enabled = true
-
+  enabled         = true
+  is_ipv6_enabled = var.enable_ipv6
   origin {
     origin_id                = var.s3_origin.origin_id
     domain_name              = var.s3_origin.domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.s3.id
-    # custom_origin_config {
-    #   http_port              = var.s3_origin.http_port
-    #   https_port             = var.s3_origin.https_port
-    #   origin_protocol_policy = var.s3_origin.protocol_policy
-    #   origin_ssl_protocols   = var.origin_ssl_protocols
-    # }
   }
 
   origin {
