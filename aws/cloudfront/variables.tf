@@ -4,12 +4,6 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
-variable "s3_website" {
-  type        = bool
-  default     = true
-  description = "Configures distribution for S3-hosted website."
-}
-
 variable "index_document" {
   type        = string
   default     = "index.html"

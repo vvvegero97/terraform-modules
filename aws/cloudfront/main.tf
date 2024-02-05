@@ -1,13 +1,11 @@
 #tfsec:ignore:aws-cloudfront-enable-waf tfsec:ignore:aws-cloudfront-enable-logging
 resource "aws_cloudfront_distribution" "s3_website_cdn" {
-  count               = var.s3_website ? 1 : 0
-  enabled             = true
-  default_root_object = var.index_document
+  enabled = true
 
   origin {
-    origin_id   = var.s3_origin.origin_id
-    domain_name = var.s3_origin.domain_name
-    origin_path = var.s3_origin.origin_path
+    origin_id                = var.s3_origin.origin_id
+    domain_name              = var.s3_origin.domain_name
+    origin_access_control_id = aws_cloudfront_origin_access_control.s3.id
     custom_origin_config {
       http_port              = var.s3_origin.http_port
       https_port             = var.s3_origin.https_port
@@ -19,7 +17,6 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   origin {
     origin_id   = var.api_origin.origin_id
     domain_name = var.api_origin.domain_name
-    origin_path = var.api_origin.origin_path
     custom_origin_config {
       http_port              = var.api_origin.http_port
       https_port             = var.api_origin.https_port
@@ -53,9 +50,10 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   dynamic "custom_error_response" {
     for_each = var.custom_errors
     content {
-      error_code         = custom_error_response.value.error_code
-      response_code      = custom_error_response.value.response_code
-      response_page_path = custom_error_response.value.response_page_path
+      error_caching_min_ttl = 10
+      error_code            = custom_error_response.value.error_code
+      response_code         = custom_error_response.value.response_code
+      response_page_path    = custom_error_response.value.response_page_path
     }
   }
 
@@ -72,45 +70,10 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   price_class = var.price_class
 }
 
-resource "aws_s3_bucket_policy" "this" {
-  count  = var.s3_website ? 1 : 0
-  bucket = var.s3_bucket_name
-  policy = <<EOT
-{
-    "Version": "2008-10-17",
-    "Id": "PolicyForCloudFrontPrivateContent",
-    "Statement": [
-      {
-            "Sid": "AllowCloudFrontServicePrincipal",
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "cloudfront.amazonaws.com"
-            },
-            "Action": "s3:GetObject",
-            "Resource": "${var.s3_bucket_arn}/*",
-            "Condition": {
-                "StringEquals": {
-                    "AWS:SourceArn": "${aws_cloudfront_distribution.s3_website_cdn[0].arn}"
-                }
-            }
-        },
-        {
-            "Sid": "AddPublicAcl",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "${var.s3_user_arn}"
-            },
-            "Action": [
-                "s3:*Object"
-            ],
-            "Resource": "${var.s3_bucket_arn}/*",
-            "Condition": {
-                "StringEquals": {
-                    "s3:x-amz-acl": "public-read"
-                }
-            }
-        }
-    ]
-}
-EOT
+resource "aws_cloudfront_origin_access_control" "s3" {
+  name                              = "${var.s3_origin.origin_id}-OAC"
+  description                       = "Origin Access Control for S3"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
 }
