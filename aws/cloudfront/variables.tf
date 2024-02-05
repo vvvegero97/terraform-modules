@@ -10,11 +10,6 @@ variable "s3_website" {
   description = "Configures distribution for S3-hosted website."
 }
 
-variable "s3_name" {
-  type        = string
-  description = "Name of S3 bucket to host from."
-}
-
 variable "index_document" {
   type        = string
   default     = "index.html"

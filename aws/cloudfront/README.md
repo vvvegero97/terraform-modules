@@ -39,7 +39,6 @@ No modules.
 | <a name="input_restriction_type"></a> [restriction\_type](#input\_restriction\_type) | Restrict distribution of your content by country: none, whitelist, or blacklist. | `string` | `"none"` | no |
 | <a name="input_s3_bucket_arn"></a> [s3\_bucket\_arn](#input\_s3\_bucket\_arn) | S3 Bucket ARN. | `string` | `""` | no |
 | <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | S3 Bucket Name. | `string` | `""` | no |
-| <a name="input_s3_name"></a> [s3\_name](#input\_s3\_name) | Name of S3 bucket to host from. | `string` | n/a | yes |
 | <a name="input_s3_origin"></a> [s3\_origin](#input\_s3\_origin) | S3 Origin parameters. | <pre>object({<br>    origin_id       = string<br>    domain_name     = string<br>    origin_path     = string<br>    http_port       = number<br>    https_port      = number<br>    protocol_policy = string<br>    allowed_methods = list(string)<br>    cached_methods  = list(string)<br>  })</pre> | n/a | yes |
 | <a name="input_s3_user_arn"></a> [s3\_user\_arn](#input\_s3\_user\_arn) | S3 user ARN. | `string` | `""` | no |
 | <a name="input_s3_website"></a> [s3\_website](#input\_s3\_website) | Configures distribution for S3-hosted website. | `bool` | `true` | no |
