@@ -51,4 +51,5 @@ No modules.
 |------|-------------|
 | <a name="output_distribution_url"></a> [distribution\_url](#output\_distribution\_url) | Distribution public URL. |
 | <a name="output_hosted_zone_id"></a> [hosted\_zone\_id](#output\_hosted\_zone\_id) | Hosted zone ID for the created CF distribution. |
+| <a name="output_s3_bucket_policy_manual"></a> [s3\_bucket\_policy\_manual](#output\_s3\_bucket\_policy\_manual) | S3 bucket policy to manually apply to the bucket Permission settings after creation. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
