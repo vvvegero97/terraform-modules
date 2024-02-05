@@ -47,7 +47,7 @@ module "iam" {
   kms_key_id        = var.kms_key_id
   policy_map = {
     "allow_objects" = {
-      name        = "${var.deployment_prefix}-S3-sync-policy"
+      name        = "${var.deployment_prefix}-${var.bucket_name}-S3-sync-policy"
       description = "S3 sync policy for ${aws_s3_bucket.this.id}"
       policy = jsonencode({
         Version = "2012-10-17"
