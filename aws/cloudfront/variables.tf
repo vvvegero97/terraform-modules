@@ -4,6 +4,24 @@ variable "deployment_prefix" {
   default     = "terraform"
 }
 
+variable "aliases" {
+  type        = list(string)
+  default     = []
+  description = "List of CNAMEs for this CloudFront Distribution."
+}
+
+variable "acm_certificate_arn" {
+  type        = string
+  default     = "none"
+  description = "ACM Certificate for alias domain."
+}
+
+variable "enable_ipv6" {
+  type        = bool
+  default     = false
+  description = "If set to 'true', enables IPv6 for CloudFront Distributions."
+}
+
 variable "index_document" {
   type        = string
   default     = "index.html"
@@ -70,6 +88,7 @@ variable "api_origin" {
     cached_methods  = list(string)
   })
   description = "API Gateway Origin parameters."
+  default     = null
 }
 
 variable "s3_bucket_arn" {
