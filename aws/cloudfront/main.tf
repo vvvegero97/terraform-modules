@@ -82,7 +82,7 @@ resource "aws_cloudfront_origin_access_control" "s3" {
 }
 
 locals {
-  user_name = element(split("/", var.s3_user_arn), 1)
+  user_name = trim(element(split("/", var.s3_user_arn), 1), "\"]")
 }
 
 module "iam" {
