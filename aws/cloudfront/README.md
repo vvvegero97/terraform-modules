@@ -16,7 +16,9 @@
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_iam"></a> [iam](#module\_iam) | ../iam | n/a |
 
 ## Resources
 

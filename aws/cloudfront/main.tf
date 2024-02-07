@@ -80,3 +80,31 @@ resource "aws_cloudfront_origin_access_control" "s3" {
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
 }
+
+locals {
+  user_name = element(split("/", var.s3_user_arn), 1)
+}
+
+module "iam" {
+  source            = "../iam"
+  deployment_prefix = var.deployment_prefix
+  create_user       = false
+  user_name         = local.user_name
+  policy_map = {
+    "allow_objects" = {
+      name        = "${aws_cloudfront_distribution.s3_website_cdn.id}-invalidation-policy"
+      description = "CloudFront invalidation policy for Distribution ${aws_cloudfront_distribution.s3_website_cdn.id}"
+      policy = jsonencode({
+        Version = "2012-10-17",
+        Statement = [
+          {
+            Sid      = "CloudFrontInvalidation",
+            Effect   = "Allow",
+            Action   = "cloudfront:CreateInvalidation",
+            Resource = aws_cloudfront_distribution.s3_website_cdn.arn
+          }
+        ]
+      })
+    }
+  }
+}

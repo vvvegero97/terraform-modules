@@ -16,12 +16,6 @@ variable "create_ec2_role" {
   description = "If set to true, creates a role for EC2 -> ECR access."
 }
 
-variable "ecr_repo_arn_repo_list" {
-  type        = list(string)
-  default     = ["arn:aws:ecr:us-mock-1:11111111:mock-ecr"]
-  description = "List of repository ARNs to include in a policy."
-}
-
 variable "user_name" {
   description = "User name for policy mapping."
   type        = string
