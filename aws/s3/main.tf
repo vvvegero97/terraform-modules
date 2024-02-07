@@ -13,6 +13,12 @@ resource "aws_s3_object" "this" {
   content_type = lookup(each.value, "content_type", "text/html")
   acl          = lookup(each.value, "acl", "private")
   etag         = each.value.is_file ? filemd5("put_objects/${each.value.source}") : null
+  lifecycle {
+    ignore_changes = [
+      etag
+    ]
+  }
+
 }
 
 
