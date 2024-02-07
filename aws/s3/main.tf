@@ -15,6 +15,8 @@ resource "aws_s3_object" "this" {
   etag         = each.value.is_file ? filemd5("put_objects/${each.value.source}") : null
   lifecycle {
     ignore_changes = [
+      tags,
+      tags_all,
       etag
     ]
   }
