@@ -26,12 +26,13 @@
 |------|------|
 | [aws_eip.ip](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
 | [aws_eip_association.eip_assoc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip_association) | resource |
+| [aws_ami.latest_amazon_linux_2023](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_ami"></a> [ami](#input\_ami) | AMI for instances | `string` | n/a | yes |
+| <a name="input_ami"></a> [ami](#input\_ami) | AMI for instances | `string` | `null` | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_disable_api_termination"></a> [disable\_api\_termination](#input\_disable\_api\_termination) | If true, enables EC2 Instance Termination Protection | `bool` | `false` | no |
 | <a name="input_ecr_access_role_name"></a> [ecr\_access\_role\_name](#input\_ecr\_access\_role\_name) | Name of the role with ECR and KMS Access Policy. | `string` | `"example-ecr-role-name"` | no |

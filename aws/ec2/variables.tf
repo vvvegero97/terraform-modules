@@ -12,6 +12,7 @@ variable "instance_name" {
 variable "ami" {
   type        = string
   description = "AMI for instances"
+  default     = null
 }
 
 variable "monitoring_enabled" {

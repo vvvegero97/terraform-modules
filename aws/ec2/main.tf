@@ -4,7 +4,7 @@ module "ec2_instance" {
   version = "5.6.0"
 
   name                        = "${var.deployment_prefix}-${var.instance_name}"
-  ami                         = var.ami
+  ami                         = var.ami ? var.ami : data.aws_ami.latest_amazon_linux_2023.id
   instance_type               = var.instance_type
   key_name                    = var.key_pair_name
   monitoring                  = var.monitoring_enabled
@@ -45,4 +45,14 @@ resource "aws_eip_association" "eip_assoc" {
   count         = var.enable_eip ? 1 : 0
   instance_id   = module.ec2_instance.id
   allocation_id = aws_eip.ip[count.index].id
+}
+
+# AMI
+data "aws_ami" "latest_amazon_linux_2023" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-2023.*-x86_64-ebs"]
+  }
 }
