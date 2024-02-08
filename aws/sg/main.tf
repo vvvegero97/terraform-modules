@@ -18,24 +18,13 @@ module "project_sg" {
   ]
 }
 
-resource "aws_security_group_rule" "docker_remote" {
-  count             = var.docker_remote_rule_enabled ? 1 : 0
+resource "aws_security_group_rule" "custom" {
+  for_each          = var.custom_ingress_rules
   type              = "ingress"
-  from_port         = 2376
-  to_port           = 2376
-  protocol          = "tcp"
-  description       = "Docker port"
-  cidr_blocks       = var.docker_ip_whitelist
-  security_group_id = module.project_sg.security_group_id
-}
-
-resource "aws_security_group_rule" "docker_swarm" {
-  count             = var.docker_swarm_rule_enabled ? 1 : 0
-  type              = "ingress"
-  from_port         = 2377
-  to_port           = 2377
-  protocol          = "tcp"
-  description       = "Docker swarm join port"
-  cidr_blocks       = var.swarm_ip_whitelist
+  from_port         = each.value.port
+  to_port           = each.value.port
+  protocol          = each.value.protocol
+  description       = each.value.description
+  cidr_blocks       = lookup(each.value, "cidr_blocks", null)
   security_group_id = module.project_sg.security_group_id
 }
