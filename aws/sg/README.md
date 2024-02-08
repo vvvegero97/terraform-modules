@@ -30,7 +30,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_custom_ingress_rules"></a> [custom\_ingress\_rules](#input\_custom\_ingress\_rules) | n/a | <pre>map(object({<br>    protocol    = string<br>    port        = number<br>    description = string<br>    cidr_blocks = optional(string)<br>  }))</pre> | `{}` | no |
+| <a name="input_custom_ingress_rules"></a> [custom\_ingress\_rules](#input\_custom\_ingress\_rules) | n/a | <pre>map(object({<br>    protocol    = string<br>    port        = number<br>    description = string<br>    cidr_blocks = optional(list(string))<br>  }))</pre> | `{}` | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_ingress_rules"></a> [ingress\_rules](#input\_ingress\_rules) | List of predefined ingress rules. | `list(string)` | <pre>[<br>  "https-443-tcp",<br>  "http-80-tcp",<br>  "ssh-tcp"<br>]</pre> | no |
 | <a name="input_type"></a> [type](#input\_type) | Type of the security group | `string` | `"terraform"` | no |

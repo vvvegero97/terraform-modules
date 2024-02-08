@@ -31,7 +31,7 @@ variable "custom_ingress_rules" {
     protocol    = string
     port        = number
     description = string
-    cidr_blocks = optional(string)
+    cidr_blocks = optional(list(string))
   }))
   default = {}
 }
