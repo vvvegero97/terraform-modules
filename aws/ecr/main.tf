@@ -15,11 +15,43 @@ resource "aws_ecr_repository" "template" {
   }
 }
 
+data "aws_iam_user" "ecr_user" {
+  count     = var.ecr_user_name != "none" ? 1 : 0
+  user_name = var.ecr_user_name
+}
+
 resource "aws_ecr_repository_policy" "template" {
-  count = var.create_ecr_repository_policy ? 1 : 0
+  count = var.ecr_user_name != "none" ? 1 : 0
 
   repository = aws_ecr_repository.template.name
-  policy     = var.ecr_repository_policy
+  policy     = <<EOF
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowPullAndPush",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": ${data.aws_iam_user.ecr_user.0.arn}
+      },
+      "Action": [
+        "ecr:GetAuthorizationToken",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:GetRepositoryPolicy",
+        "ecr:DescribeRepositories",
+        "ecr:ListImages",
+        "ecr:DescribeImages",
+        "ecr:BatchGetImage",
+        "ecr:InitiateLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:CompleteLayerUpload",
+        "ecr:PutImage"
+      ]
+    }
+  ]
+}
+EOF
 }
 
 resource "aws_ecr_repository" "template_cache" {

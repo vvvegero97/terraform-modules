@@ -20,16 +20,10 @@ variable "kms_key_id" {
   type        = string
 }
 
-variable "create_ecr_repository_policy" {
-  description = "Determines whether to create ECR repository policy or not"
-  type        = bool
-  default     = false
-}
-
-variable "ecr_repository_policy" {
+variable "ecr_user_name" {
   type        = string
-  description = "Elastic Container Registry Repository Policy."
-  default     = ""
+  default     = "none"
+  description = "User name to grant access to."
 }
 
 # Cache
