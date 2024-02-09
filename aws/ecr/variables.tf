@@ -20,10 +20,10 @@ variable "kms_key_id" {
   type        = string
 }
 
-variable "ecr_user_name" {
+variable "ecr_user_arn" {
   type        = string
   default     = "none"
-  description = "User name to grant access to."
+  description = "User ARN to grant access to."
 }
 
 # Cache

@@ -15,13 +15,8 @@ resource "aws_ecr_repository" "template" {
   }
 }
 
-data "aws_iam_user" "ecr_user" {
-  count     = var.ecr_user_name != "none" ? 1 : 0
-  user_name = var.ecr_user_name
-}
-
 resource "aws_ecr_repository_policy" "template" {
-  count = var.ecr_user_name != "none" ? 1 : 0
+  count = var.ecr_user_arn != "none" ? 1 : 0
 
   repository = aws_ecr_repository.template.name
   policy     = <<EOF
@@ -32,7 +27,7 @@ resource "aws_ecr_repository_policy" "template" {
       "Sid": "AllowPullAndPush",
       "Effect": "Allow",
       "Principal": {
-        "AWS": ${data.aws_iam_user.ecr_user.0.arn}
+        "AWS": "${var.ecr_user_arn}"
       },
       "Action": [
         "ecr:GetAuthorizationToken",
