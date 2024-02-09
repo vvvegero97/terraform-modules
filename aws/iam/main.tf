@@ -13,7 +13,7 @@ resource "aws_iam_user_policy_attachment" "attachment" {
 }
 
 resource "aws_iam_user_policy_attachment" "arn" {
-  for_each   = var.policy_arns
+  for_each   = toset(var.policy_arns)
   user       = var.user_name
   policy_arn = each.value
 }
