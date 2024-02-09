@@ -25,7 +25,7 @@ No modules.
 | [aws_ecr_lifecycle_policy.template_cache_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_lifecycle_policy) | resource |
 | [aws_ecr_repository.template](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository) | resource |
 | [aws_ecr_repository.template_cache](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository) | resource |
-| [aws_ecr_repository_policy.template](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy) | resource |
+| [aws_iam_policy_document.ecr_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
@@ -43,6 +43,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_ecr_policy"></a> [ecr\_policy](#output\_ecr\_policy) | ECR policy document to apply to ECR manually. |
 | <a name="output_ecr_repo_arn"></a> [ecr\_repo\_arn](#output\_ecr\_repo\_arn) | ECR repository ARN |
 | <a name="output_ecr_repo_url"></a> [ecr\_repo\_url](#output\_ecr\_repo\_url) | ECR repository URL |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
