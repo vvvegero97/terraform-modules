@@ -12,6 +12,12 @@ resource "aws_iam_user_policy_attachment" "attachment" {
   policy_arn = aws_iam_policy.generated_policy[each.key].arn
 }
 
+resource "aws_iam_user_policy_attachment" "arn" {
+  for_each   = var.policy_arns
+  user       = var.user_name
+  policy_arn = each.value
+}
+
 resource "aws_iam_role" "ecr_access_role" {
   count = var.create_ec2_role ? 1 : 0
   name  = "${var.deployment_prefix}-ecr-access-role"
@@ -43,11 +49,6 @@ resource "aws_iam_role_policy_attachment" "ec2_role_attachment" {
 resource "aws_iam_user" "this_user" {
   count = var.create_user ? 1 : 0
   name  = var.user_name
-}
-
-resource "aws_iam_user_policy_attachment" "test-attach" {
-  user       = var.user_name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
 }
 
 resource "aws_iam_access_key" "this_user_key" {

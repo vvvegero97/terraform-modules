@@ -32,6 +32,12 @@ variable "policy_map" {
   default = {}
 }
 
+variable "policy_arns" {
+  type        = list(string)
+  default     = [""]
+  description = "List of policy ARNs to apply to a user."
+}
+
 variable "kms_key_id" {
   type        = string
   default     = ""
