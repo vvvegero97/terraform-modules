@@ -4,7 +4,7 @@ module "ec2_instance" {
   version = "5.6.0"
 
   name                        = "${var.deployment_prefix}-${var.instance_name}"
-  ami                         = var.ami ? var.ami : data.aws_ami.latest_amazon_linux_2023.id
+  ami                         = var.ami != null ? var.ami : data.aws_ami.latest_amazon_linux_2023.id
   instance_type               = var.instance_type
   key_name                    = var.key_pair_name
   monitoring                  = var.monitoring_enabled
@@ -53,6 +53,14 @@ data "aws_ami" "latest_amazon_linux_2023" {
   owners      = ["amazon"]
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-2023.*-x86_64-ebs"]
+    values = ["al2023-ami-2023.*-x86_64"]
+  }
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
   }
 }
