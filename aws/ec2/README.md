@@ -35,7 +35,7 @@
 | <a name="input_ami"></a> [ami](#input\_ami) | AMI for instances | `string` | `null` | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_disable_api_termination"></a> [disable\_api\_termination](#input\_disable\_api\_termination) | If true, enables EC2 Instance Termination Protection | `bool` | `false` | no |
-| <a name="input_ecr_access_role_name"></a> [ecr\_access\_role\_name](#input\_ecr\_access\_role\_name) | Name of the role with ECR and KMS Access Policy. | `string` | `"example-ecr-role-name"` | no |
+| <a name="input_ecr_access_role_name"></a> [ecr\_access\_role\_name](#input\_ecr\_access\_role\_name) | Name of the role with ECR and KMS Access Policy. | `string` | `"none"` | no |
 | <a name="input_enable_eip"></a> [enable\_eip](#input\_enable\_eip) | If true, assigns an Elastic IP address for the EC2 instance. | `bool` | `false` | no |
 | <a name="input_instance_name"></a> [instance\_name](#input\_instance\_name) | Partial name of EC2 instances. | `string` | n/a | yes |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | EC2 instance type. | `string` | `"t3.medium"` | no |

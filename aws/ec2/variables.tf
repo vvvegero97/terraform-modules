@@ -78,6 +78,6 @@ variable "instance_type" {
 
 variable "ecr_access_role_name" {
   type        = string
-  default     = "example-ecr-role-name"
+  default     = "none"
   description = "Name of the role with ECR and KMS Access Policy."
 }
