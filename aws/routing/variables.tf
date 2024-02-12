@@ -9,6 +9,12 @@ variable "domain" {
   type        = string
 }
 
+variable "create_hosted_zone" {
+  type        = bool
+  default     = true
+  description = "If set to true, creates the hosted zone specified in 'var.domain'. If set to false - gets the existing hosted zone through terraform data."
+}
+
 variable "record_map" {
   description = "Map variable with records."
   type = map(object({
