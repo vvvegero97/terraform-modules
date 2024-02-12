@@ -15,7 +15,7 @@ data "aws_route53_zone" "primary" {
 }
 
 locals {
-  zone_id = var.create_hosted_zone ? aws_route53_zone.primary.*.zone_id : data.aws_route53_zone.primary.*.zone_id
+  zone_id = var.create_hosted_zone ? aws_route53_zone.primary[0].zone_id : data.aws_route53_zone.primary[0].zone_id
 }
 
 
