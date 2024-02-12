@@ -37,7 +37,6 @@
 | <a name="input_custom_errors"></a> [custom\_errors](#input\_custom\_errors) | List variable with custom error responces. | <pre>list(object({<br>    error_code         = number<br>    response_code      = number<br>    response_page_path = string<br>  }))</pre> | <pre>[<br>  {<br>    "error_code": 404,<br>    "response_code": 200,<br>    "response_page_path": "index.html"<br>  }<br>]</pre> | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_enable_ipv6"></a> [enable\_ipv6](#input\_enable\_ipv6) | If set to 'true', enables IPv6 for CloudFront Distributions. | `bool` | `false` | no |
-| <a name="input_index_document"></a> [index\_document](#input\_index\_document) | Index document for S3 bucket Website configuration. | `string` | `"index.html"` | no |
 | <a name="input_locations"></a> [locations](#input\_locations) | List of locations for whitelist/blacklist. Uses 2-letter country codes. | `list(string)` | `[]` | no |
 | <a name="input_origin_ssl_protocols"></a> [origin\_ssl\_protocols](#input\_origin\_ssl\_protocols) | List of origin SSL Protocols (default recommended. | `list(string)` | <pre>[<br>  "TLSv1.2"<br>]</pre> | no |
 | <a name="input_price_class"></a> [price\_class](#input\_price\_class) | AWS CloudFront PriceClass. | `string` | `"PriceClass_All"` | no |

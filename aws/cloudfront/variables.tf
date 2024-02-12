@@ -22,12 +22,6 @@ variable "enable_ipv6" {
   description = "If set to 'true', enables IPv6 for CloudFront Distributions."
 }
 
-variable "index_document" {
-  type        = string
-  default     = "index.html"
-  description = "Index document for S3 bucket Website configuration."
-}
-
 variable "price_class" {
   type        = string
   default     = "PriceClass_All"
