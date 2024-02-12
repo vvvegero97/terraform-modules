@@ -34,7 +34,7 @@ variable "policy_map" {
 
 variable "policy_arns" {
   type        = list(string)
-  default     = [""]
+  default     = []
   description = "List of policy ARNs to apply to a user."
 }
 

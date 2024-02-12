@@ -40,7 +40,7 @@ No modules.
 | <a name="input_create_user"></a> [create\_user](#input\_create\_user) | If set to true, creates a new IAM user. | `bool` | `false` | no |
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | Prefix of the deployment. | `string` | `"terraform"` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS Key ID to encrypt AWS SSM parameter. | `string` | `""` | no |
-| <a name="input_policy_arns"></a> [policy\_arns](#input\_policy\_arns) | List of policy ARNs to apply to a user. | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
+| <a name="input_policy_arns"></a> [policy\_arns](#input\_policy\_arns) | List of policy ARNs to apply to a user. | `list(string)` | `[]` | no |
 | <a name="input_policy_map"></a> [policy\_map](#input\_policy\_map) | Map variable with policies | <pre>map(object({<br>    name        = string<br>    description = string<br>    policy      = string<br>  }))</pre> | `{}` | no |
 | <a name="input_user_name"></a> [user\_name](#input\_user\_name) | User name for policy mapping. | `string` | `"default-user"` | no |
 
