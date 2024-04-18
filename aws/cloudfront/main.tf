@@ -98,9 +98,12 @@ module "iam" {
         Version = "2012-10-17",
         Statement = [
           {
-            Sid      = "CloudFrontInvalidation",
-            Effect   = "Allow",
-            Action   = "cloudfront:CreateInvalidation",
+            Sid    = "CloudFrontInvalidation",
+            Effect = "Allow",
+            Action = [
+              "cloudfront:ListInvalidations",
+              "cloudfront:CreateInvalidation"
+            ],
             Resource = aws_cloudfront_distribution.s3_website_cdn.arn
           }
         ]
