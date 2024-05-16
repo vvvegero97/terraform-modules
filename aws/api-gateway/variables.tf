@@ -41,3 +41,16 @@ variable "methods" {
     }
   }
 }
+
+variable "cors_rules" {
+  description = "List of methods to create integrations for."
+  type = map(object({
+    allow_credentials = optional(bool)
+    allow_headers     = list(string)
+    allow_methods     = list(string)
+    allow_origins     = list(string)
+    expose_headers    = list(string)
+    max_age           = number
+  }))
+  default = {}
+}
