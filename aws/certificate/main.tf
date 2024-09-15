@@ -11,9 +11,9 @@ data "aws_route53_zone" "selected_zones" {
 }
 
 resource "aws_route53_record" "validation" {
-  for_each = { for idx, val in aws_acm_certificate.this.domain_validation_options : idx => val }
+  for_each = { for option in aws_acm_certificate.this.domain_validation_options : option.domain_name => option }
 
-  zone_id = data.aws_route53_zone.selected_zones[each.value.domain_name].zone_id
+  zone_id = data.aws_route53_zone.selected_zones[each.key].zone_id
   name    = each.value.resource_record_name
   type    = each.value.resource_record_type
   ttl     = 60
@@ -23,5 +23,5 @@ resource "aws_route53_record" "validation" {
 
 resource "aws_acm_certificate_validation" "this" {
   certificate_arn         = aws_acm_certificate.this.arn
-  validation_record_fqdns = aws_route53_record.validation[*].fqdn
+  validation_record_fqdns = [for record in aws_route53_record.validation : record.fqdn]
 }
