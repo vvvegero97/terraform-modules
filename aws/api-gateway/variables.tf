@@ -54,3 +54,9 @@ variable "cors_rules" {
   }))
   default = {}
 }
+
+variable "description" {
+  type        = string
+  default     = ""
+  description = "Description of the API-Gateway to create."
+}

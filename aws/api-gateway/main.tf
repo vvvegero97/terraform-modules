@@ -1,6 +1,7 @@
 resource "aws_apigatewayv2_api" "this" {
   name          = "${var.deployment_prefix}-api-gw-${var.api_gw_protocol_type}"
   protocol_type = var.api_gw_protocol_type
+  description   = var.description
   dynamic "cors_configuration" {
     for_each = var.cors_rules
     content {
