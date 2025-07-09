@@ -1,7 +1,7 @@
 # EC2 Instance
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "5.6.0"
+  version = "6.0.2"
 
   name                        = "${var.deployment_prefix}-${var.instance_name}"
   ami                         = var.ami != null ? var.ami : data.aws_ami.latest_amazon_linux_2023.id
@@ -16,13 +16,11 @@ module "ec2_instance" {
 
   user_data_base64 = var.user_data_base64
 
-  root_block_device = [
-    {
-      encrypted   = var.volume_encryption
-      volume_type = var.volume_type
-      volume_size = var.volume_size
-    },
-  ]
+  root_block_device = {
+    encrypted   = var.volume_encryption
+    volume_type = var.volume_type
+    volume_size = var.volume_size
+  }
 
   tags = {
     Terraform = "true"
