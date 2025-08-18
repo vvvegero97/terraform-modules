@@ -125,6 +125,7 @@ locals {
 }
 
 module "iam" {
+  count             = var.enable_s3_origin ? 1 : 0
   source            = "../iam"
   deployment_prefix = var.deployment_prefix
   create_user       = false
