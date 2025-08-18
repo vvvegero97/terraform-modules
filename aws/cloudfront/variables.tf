@@ -68,6 +68,7 @@ variable "s3_origin" {
     cached_methods  = list(string)
   })
   description = "S3 Origin parameters."
+  default     = null
 }
 
 variable "api_origin" {
