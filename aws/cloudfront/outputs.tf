@@ -10,7 +10,7 @@ output "hosted_zone_id" {
 
 output "s3_bucket_policy_manual" {
   description = "S3 bucket policy to manually apply to the bucket Permission settings after creation."
-  value = jsonencode({
+  value = var.enable_s3_origin ? jsonencode({
     Version = "2008-10-17",
     Id      = "PolicyForCloudFrontPrivateContent",
     Statement = [
@@ -46,5 +46,5 @@ output "s3_bucket_policy_manual" {
         }
       }
     ]
-  })
+  }) : null
 }

@@ -85,6 +85,27 @@ variable "api_origin" {
   default     = null
 }
 
+variable "api_origin_2" {
+  type = object({
+    origin_id       = string
+    origin_path     = string
+    domain_name     = string
+    http_port       = number
+    https_port      = number
+    protocol_policy = string
+    allowed_methods = list(string)
+    cached_methods  = list(string)
+  })
+  description = "Second API Gateway Origin parameters."
+  default     = null
+}
+
+variable "enable_s3_origin" {
+  type        = bool
+  default     = true
+  description = "Whether to create S3 origin."
+}
+
 variable "s3_bucket_arn" {
   type        = string
   default     = ""

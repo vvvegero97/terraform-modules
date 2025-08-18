@@ -3,10 +3,13 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
   enabled         = true
   aliases         = var.aliases
   is_ipv6_enabled = var.enable_ipv6
-  origin {
-    origin_id                = var.s3_origin.origin_id
-    domain_name              = var.s3_origin.domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.s3.id
+  dynamic "origin" {
+    for_each = var.enable_s3_origin ? toset([1]) : toset([])
+    content {
+      origin_id                = var.s3_origin.origin_id
+      domain_name              = var.s3_origin.domain_name
+      origin_access_control_id = aws_cloudfront_origin_access_control.s3[0].id
+    }
   }
 
   dynamic "origin" {
@@ -23,11 +26,31 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
     }
   }
 
+  dynamic "origin" {
+    for_each = var.api_origin_2 != null ? toset([1]) : toset([])
+    content {
+      origin_id   = var.api_origin_2.origin_id
+      domain_name = var.api_origin_2.domain_name
+      custom_origin_config {
+        http_port              = var.api_origin_2.http_port
+        https_port             = var.api_origin_2.https_port
+        origin_protocol_policy = var.api_origin_2.protocol_policy
+        origin_ssl_protocols   = var.origin_ssl_protocols
+      }
+    }
+  }
+
   #tfsec:ignore:aws-cloudfront-enforce-https
   default_cache_behavior {
-    target_origin_id       = var.s3_origin.origin_id
-    allowed_methods        = lookup(var.s3_origin, "allowed_methods", ["GET", "HEAD"])
-    cached_methods         = lookup(var.s3_origin, "cached_methods", ["GET", "HEAD"])
+    target_origin_id = var.enable_s3_origin ? var.s3_origin.origin_id : (
+      var.api_origin != null ? var.api_origin.origin_id : var.api_origin_2.origin_id
+    )
+    allowed_methods = var.enable_s3_origin ? lookup(var.s3_origin, "allowed_methods", ["GET", "HEAD"]) : (
+      var.api_origin != null ? lookup(var.api_origin, "allowed_methods", ["GET", "HEAD"]) : lookup(var.api_origin_2, "allowed_methods", ["GET", "HEAD"])
+    )
+    cached_methods = var.enable_s3_origin ? lookup(var.s3_origin, "cached_methods", ["GET", "HEAD"]) : (
+      var.api_origin != null ? lookup(var.api_origin, "cached_methods", ["GET", "HEAD"]) : lookup(var.api_origin_2, "cached_methods", ["GET", "HEAD"])
+    )
     viewer_protocol_policy = "redirect-to-https"
     cache_policy_id        = "658327ea-f89d-4fab-a63d-7e88639e58f6"
     compress               = false
@@ -41,6 +64,21 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
       path_pattern             = var.api_origin.origin_path
       allowed_methods          = lookup(var.api_origin, "allowed_methods", ["GET", "HEAD"])
       cached_methods           = lookup(var.api_origin, "cached_methods", [])
+      viewer_protocol_policy   = "redirect-to-https"
+      cache_policy_id          = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
+      origin_request_policy_id = "b689b0a8-53d0-40ab-baf2-68738e2966ac"
+      compress                 = true
+    }
+  }
+
+  #tfsec:ignore:aws-cloudfront-enforce-https
+  dynamic "ordered_cache_behavior" {
+    for_each = var.api_origin_2 != null ? toset([1]) : toset([])
+    content {
+      target_origin_id         = var.api_origin_2.origin_id
+      path_pattern             = var.api_origin_2.origin_path
+      allowed_methods          = lookup(var.api_origin_2, "allowed_methods", ["GET", "HEAD"])
+      cached_methods           = lookup(var.api_origin_2, "cached_methods", [])
       viewer_protocol_policy   = "redirect-to-https"
       cache_policy_id          = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad"
       origin_request_policy_id = "b689b0a8-53d0-40ab-baf2-68738e2966ac"
@@ -74,6 +112,7 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
 }
 
 resource "aws_cloudfront_origin_access_control" "s3" {
+  count                             = var.enable_s3_origin ? 1 : 0
   name                              = "${var.s3_origin.origin_id}-OAC"
   description                       = "Origin Access Control for S3"
   origin_access_control_origin_type = "s3"
