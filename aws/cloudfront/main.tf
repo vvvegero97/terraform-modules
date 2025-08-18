@@ -58,7 +58,7 @@ resource "aws_cloudfront_distribution" "s3_website_cdn" {
 
   #tfsec:ignore:aws-cloudfront-enforce-https
   dynamic "ordered_cache_behavior" {
-    for_each = var.api_origin != null ? toset([1]) : toset([])
+    for_each = var.api_origin != null && var.api_origin_2 == null ? toset([1]) : toset([])
     content {
       target_origin_id         = var.api_origin.origin_id
       path_pattern             = var.api_origin.origin_path
