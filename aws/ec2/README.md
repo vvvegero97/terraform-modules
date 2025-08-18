@@ -52,5 +52,6 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_server_public_dns"></a> [server\_public\_dns](#output\_server\_public\_dns) | Public DNS of the EC2 instance. |
 | <a name="output_server_public_ip"></a> [server\_public\_ip](#output\_server\_public\_ip) | Public IP of the EC2 instance. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
